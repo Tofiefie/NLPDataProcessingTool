@@ -4,4 +4,8 @@ on: [ push ]
 
 jobs:
   build:
-    runs-on: ubuntu-la
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-py
