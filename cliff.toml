@@ -32,4 +32,7 @@ footer = """
 # allow only conventional commits
 # https://www.conventionalcommits.org
 conventional_commits = true
-# regex for parsing and grouping commi
+# regex for parsing and grouping commits
+commit_parsers = [
+    { message = "^Feat*", group = "Features" },
+    { message = "^Fix*", gro
