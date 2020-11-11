@@ -35,4 +35,6 @@ conventional_commits = true
 # regex for parsing and grouping commits
 commit_parsers = [
     { message = "^Feat*", group = "Features" },
-    { message = "^Fix*", gro
+    { message = "^Fix*", group = "Bug Fixes" },
+    { message = "^Doc*", group = "Documentation" },
+    { message = "^Perf*", gro
