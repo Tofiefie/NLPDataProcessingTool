@@ -42,4 +42,7 @@ commit_parsers = [
     { message = "^Style*", group = "Styling" },
     { message = "^Test*", group = "Testing" },
     { message = "^Chore\\(release\\): prepare for*", skip = true },
-    { message = "^Chore*", group = "Misc
+    { message = "^Chore*", group = "Miscellaneous Tasks" },
+]
+# filter out the commits that are not matched by commit parsers
+filter_commits = false
