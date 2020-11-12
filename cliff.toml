@@ -39,4 +39,6 @@ commit_parsers = [
     { message = "^Doc*", group = "Documentation" },
     { message = "^Perf*", group = "Performance" },
     { message = "^Refactor*", group = "Refactor" },
+    { message = "^Style*", group = "Styling" },
+    { message = "^Test*", group = "Testing" },
     { 
