@@ -14,4 +14,7 @@ app_name = app_dir.name
 system_data_dir = Path.home() / 'data'
 system_data_dir.mkdir(parents=True, exist_ok=True)
 
-proj
+project_out_dir = project_dir / 'out'
+project_out_dir.mkdir(parents=True, exist_ok=True)
+
+project_d
