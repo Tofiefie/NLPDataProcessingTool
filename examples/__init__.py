@@ -9,4 +9,9 @@ if num_devices > 0:
 
 app_dir = Path(__file__).resolve().parent
 project_dir = app_dir.parent
-app_name = app_
+app_name = app_dir.name
+
+system_data_dir = Path.home() / 'data'
+system_data_dir.mkdir(parents=True, exist_ok=True)
+
+proj
