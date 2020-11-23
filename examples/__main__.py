@@ -8,3 +8,9 @@
 #
 #
 # @aku.register
+# def hello():
+#     print('hello, world!')
+#
+#
+# aku.register(train_tagger)
+# aku.register(train_
