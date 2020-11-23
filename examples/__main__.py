@@ -13,4 +13,7 @@
 #
 #
 # aku.register(train_tagger)
-# aku.register(train_
+# aku.register(train_translator)
+# aku.register(tune_mbart_translator)
+#
+# aku.run()
