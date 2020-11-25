@@ -226,3 +226,19 @@
 #
 #         if global_step >= scheduler.num_training_steps:
 #             break
+#
+#
+# def tune_mbart_translator(setup_env: Type[init_env] = init_env,
+#                           main: Type[tune_mbart_translator_rank] = tune_mbart_translator_rank, **kwargs):
+#     out_dir = setup_env(project_out_dir=project_out_dir, **kwargs['@aku'])
+#
+#     if torch.cuda.device_count() == 1:
+#         return main(-1, out_dir)
+#
+#     try:
+#         torch.multiprocessing.spawn(
+#             main, args=(out_dir,),
+#             nprocs=torch.cuda.device_count(),
+#         )
+#     finally:
+#         dist.destroy_process_group()
