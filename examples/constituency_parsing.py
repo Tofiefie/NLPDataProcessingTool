@@ -98,3 +98,89 @@
 #         batch_size1 = batch["segment_size"].token_sizes.size()[0]
 #         batch_size2 = batch_size1 - b * 2
 #
+#         h1, s1 = self(batch)
+#         h2, s2 = self(batch)
+#
+#         task_loss1 = self.cky(h1).log_prob(targets=target).neg().sum() / batch_size2
+#         task_loss2 = self.cky(h2).log_prob(targets=target).neg().sum() / batch_size2
+#         task_loss = task_loss1 + task_loss2
+#
+#         token = batch["token"].data
+#         mask = token[:, None] == token[None, :]
+#         mask ^= torch.eye(mask.size()[0], dtype=torch.bool, device=mask.device)
+#
+#         s = torch.cosine_similarity(s1[:, None, :], s2[None, :, :], dim=-1) / self.tau
+#         s[mask] = -float('inf')
+#
+#         hash_loss1 = torch.logsumexp(s, dim=-1).mean() - torch.diag(s).mean()
+#         hash_loss2 = torch.logsumexp(s, dim=-2).mean() - torch.diag(s).mean()
+#         hash_loss = hash_loss1 + hash_loss2
+#
+#         meter.task.update_by_mean(task_loss1, batch_size2)
+#
+#         return task_loss + self.beta * hash_loss
+#
+#     @torch.inference_mode()
+#     def decode(self, batch, meter: InferenceMeter):
+#         raise NotImplementedError
+#
+#
+# class Adam(optim.Adam):
+#     def __init__(self, lr: float = 7e-4, beta1: float = 0.9, beta2: float = 0.98,
+#                  weight_decay: float = 1e-4, amsgrad: bool = False, *, model: nn.Module, **kwargs) -> None:
+#         params_with_decay, params_without_decay = optim.divide_groups(model)
+#         super(Adam, self).__init__(
+#             lr=lr, beta1=beta1, beta2=beta2, amsgrad=amsgrad, params=[
+#                 {'params': params_with_decay, 'weight_decay': weight_decay},
+#                 {'params': params_without_decay, 'weight_decay': 0.},
+#             ]
+#         )
+#
+#
+# class InverseSquareRootScheduler(sched.InverseSquareRootScheduler):
+#     def __init__(self, num_training_steps: int = 5_0000, num_warmup_steps: int = 5000, *,
+#                  optimizer: Optimizer, last_epoch: int = -1, **kwargs) -> None:
+#         super(InverseSquareRootScheduler, self).__init__(
+#             num_training_steps=num_training_steps, num_warmup_steps=num_warmup_steps,
+#             optimizer=optimizer, last_epoch=last_epoch, **kwargs,
+#         )
+#
+#
+# def train_main(
+#         rank: int, out_dir: Path, /,
+#         setup_rank: Union[Type[init_rank]] = init_rank,
+#         data,
+#         model: Type[ConstituencyParsing] = ConstituencyParsing,
+#         optimizer: Type[Adam] = Adam,
+#         scheduler: Type[InverseSquareRootScheduler] = InverseSquareRootScheduler,
+#         grad_norm: float = -1,
+#         amp: Amp = fp16,
+#         acc_interval: int = 1,
+#         log_interval: int = 1 if DEBUG else 50,
+#         dev_interval: int = 10 if DEBUG else 2000):
+#     device = setup_rank(rank, out_dir)
+#
+#     train_loader, dev_loader, test_loader = data()
+#
+#     model = model().to(device=device)
+#     if dist.is_initialized():
+#         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[device])
+#
+#     logger.info(f'model => {model}')
+#
+#     optimizer = optimizer(model=model)
+#     logger.info(f'optimizer => {optimizer}')
+#
+#     scheduler = scheduler(optimizer=optimizer)
+#     logger.info(f'scheduler => {scheduler}')
+#
+#     amp = amp()
+#     logger.info(f'amp => {amp}')
+#
+#     def dev_stage(data_loader: DataLoader):
+#         meter = FitMeter()
+#         model.eval()
+#
+#         desc = None
+#         if is_master():
+#             desc = tqdm(total=data_loader.dataset.num_rows, desc='dev')
