@@ -134,3 +134,68 @@
 #         new_context_layer_shape = context_layer.size()[:-2] + (self.all_head_size,)
 #         context_layer = context_layer.view(new_context_layer_shape)
 #
+#         outputs = (context_layer, attention_scores) if output_attentions else (context_layer,)
+#
+#         if self.is_decoder:
+#             outputs = outputs + (past_key_value,)
+#         return outputs
+#
+#
+# class RobertaSelfOutput(nn.Module):
+#     def __init__(self, config, num_bits: int) -> None:
+#         super(RobertaSelfOutput, self).__init__()
+#
+#         self.attention_head_size = (config.hidden_size + config.num_attention_heads - 1) // config.num_attention_heads
+#         self.all_head_size = num_bits * self.attention_head_size
+#
+#         self.dense = nn.Linear(self.all_head_size, config.hidden_size)
+#         self.LayerNorm = nn.LayerNorm(config.hidden_size, eps=config.layer_norm_eps)
+#         self.dropout = nn.Dropout(config.hidden_dropout_prob)
+#
+#     def forward(self, hidden_states: torch.Tensor, input_tensor: torch.Tensor) -> torch.Tensor:
+#         hidden_states = self.dense(hidden_states)
+#         hidden_states = self.dropout(hidden_states)
+#         hidden_states = self.LayerNorm(hidden_states + input_tensor)
+#         return hidden_states
+#
+#
+# class Roberta(PLM):
+#     def __init__(self, *, num_bits: int, lang: str) -> None:
+#         super(Roberta, self).__init__(lang=lang)
+#         self.num_bits = num_bits
+#
+#     @property
+#     def model(self) -> PreTrainedModel:
+#         if self._model is None:
+#             self._model: RobertaModel = AutoModel.from_pretrained(
+#                 pretrained_model_name_or_path=self.pretrained_model_name,
+#                 num_hidden_layers=self.config.num_hidden_layers + 1,
+#             )
+#
+#             self._model.encoder.layer[-1].attention.self = RobertaSelfAttention(
+#                 config=self.config, num_bits=self.num_bits,
+#             )
+#             self._model.encoder.layer[-1].attention.output = RobertaSelfOutput(
+#                 config=self.config, num_bits=self.num_bits,
+#             )
+#
+#             self._model.encoder.layer[-1].attention.apply(self._model._init_weights)
+#
+#         return self._model
+#
+#
+# class RobertaBase(Roberta):
+#     checkpoints = {
+#         'en': 'roberta-base',
+#         'de': 'uklfr/gottbert-base',
+#         'fr': 'camembert-base',
+#         'zh': 'hfl/chinese-macbert-base',
+#     }
+#
+#
+# class RobertaLarge(Roberta):
+#     checkpoints = {
+#         'en': 'roberta-large',
+#         'fr': 'camembert-large',
+#         'zh': 'hfl/chinese-macbert-large',
+#     }
