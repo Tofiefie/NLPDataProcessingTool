@@ -205,3 +205,30 @@
 #         if global_step % log_interval == 0:
 #             train_meter.gather().log(stage='train', iteration=global_step, out_dir=out_dir)
 #             train_meter = FitMeter()
+#
+#         if global_step % dev_interval == 0:
+#             dev_meter = dev_stage(data_loader=dev_loader)
+#             dev_meter.gather().log(stage='dev', iteration=global_step, out_dir=out_dir)
+#
+#             if dev_sota is None or dev_sota < dev_meter:
+#                 dev_sota = dev_meter
+#                 dev_sota.gather().log(stage='sota', iteration=global_step, out_dir=out_dir)
+#
+#         if global_step >= scheduler.num_training_steps:
+#             break
+#
+#
+# def train_tagger(setup_env: Type[init_env] = init_env, main: Type[train_main] = train_main, **kwargs):
+#     out_dir = setup_env(project_out_dir=project_out_dir, **kwargs['@aku'])
+#     device_count = torch.cuda.device_count()
+#
+#     if device_count == 1:
+#         return main(-1, out_dir)
+#
+#     try:
+#         torch.multiprocessing.spawn(
+#             main, args=(out_dir,),
+#             nprocs=device_count,
+#         )
+#     finally:
+#         dist.destroy_process_group()
