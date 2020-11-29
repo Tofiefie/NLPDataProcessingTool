@@ -119,3 +119,89 @@
 #     def __init__(self, lr: float = 7e-4, beta1: float = 0.9, beta2: float = 0.98,
 #                  weight_decay: float = 1e-4, amsgrad: bool = False, *, model: nn.Module, **kwargs) -> None:
 #         params_with_decay, params_without_decay = optim.divide_groups(model)
+#         super(Adam, self).__init__(
+#             lr=lr, beta1=beta1, beta2=beta2, amsgrad=amsgrad, params=[
+#                 {'params': params_with_decay, 'weight_decay': weight_decay},
+#                 {'params': params_without_decay, 'weight_decay': 0.},
+#             ]
+#         )
+#
+#
+# class LinearScheduler(sched.LinearScheduler):
+#     def __init__(self, num_training_steps: int = 5_0000, num_warmup_steps: int = 5000, *,
+#                  optimizer: Optimizer, last_epoch: int = -1, **kwargs) -> None:
+#         super(LinearScheduler, self).__init__(
+#             num_training_steps=num_training_steps, num_warmup_steps=num_warmup_steps,
+#             optimizer=optimizer, last_epoch=last_epoch, **kwargs,
+#         )
+#
+#
+# def train_main(
+#         rank: int, out_dir: Path, /,
+#         setup_rank: Union[Type[init_rank]] = init_rank,
+#         data: Data = conll2003,
+#         model: Type[Tagger] = Tagger,
+#         optimizer: Type[Adam] = Adam,
+#         scheduler: Type[LinearScheduler] = LinearScheduler,
+#         grad_norm: float = 5,
+#         amp: Amp = fp16,
+#         acc_interval: int = 1,
+#         log_interval: int = 1 if DEBUG else 50,
+#         dev_interval: int = 10 if DEBUG else 2000):
+#     device = setup_rank(rank, out_dir)
+#
+#     (train_loader, dev_loader, test_loader), (plm, target_tokenizer) = data()
+#
+#     model = model(plm=plm, target_tokenizer=target_tokenizer).to(device=device)
+#     if dist.is_initialized():
+#         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[device])
+#
+#     logger.info(f'model => {model}')
+#
+#     optimizer = optimizer(model=model)
+#     logger.info(f'optimizer => {optimizer}')
+#
+#     scheduler = scheduler(optimizer=optimizer)
+#     logger.info(f'scheduler => {scheduler}')
+#
+#     amp = amp()
+#     logger.info(f'amp => {amp}')
+#
+#     def dev_stage(data_loader: DataLoader):
+#         meter = FitMeter()
+#         model.eval()
+#
+#         desc = None
+#         if is_master():
+#             desc = tqdm(total=data_loader.dataset.num_rows, desc='dev')
+#
+#         for dev_batch in data_loader:
+#             model(dev_batch, meter=meter)
+#             if desc is not None:
+#                 desc.update(dev_batch['batch_size'])
+#
+#         model.train()
+#         return meter
+#
+#     model.train()
+#     train_meter, dev_sota = FitMeter(), None
+#     for global_step, batch in tqdm(enumerate(train_loader, start=1), desc=f'train', total=scheduler.num_training_steps):
+#         with amp:
+#             loss = model(batch, meter=train_meter) / acc_interval
+#             if dist.is_initialized():
+#                 dist.all_reduce(loss)
+#         amp.scale(loss).backward()
+#
+#         if grad_norm > 0:
+#             amp.unscale(optimizer=optimizer)
+#             torch.nn.utils.clip_grad_norm_(
+#                 parameters=model.parameters(),
+#                 max_norm=grad_norm,
+#             )
+#
+#         amp.step(optimizer=optimizer)
+#         scheduler.step()
+#
+#         if global_step % log_interval == 0:
+#             train_meter.gather().log(stage='train', iteration=global_step, out_dir=out_dir)
+#             train_meter = FitMeter()
