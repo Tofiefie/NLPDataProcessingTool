@@ -1,1 +1,13 @@
-transf
+transformers
+torch
+datasets
+tokenizers
+seqeval
+filelock
+numpy
+nltk
+tqdm
+dataclasses
+colorlog
+tabulate
+matplotlib
