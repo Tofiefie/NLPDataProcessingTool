@@ -278,3 +278,44 @@
 #     scheduler = scheduler(optimizer=optimizer)
 #     logger.info(f'scheduler => {scheduler}')
 #
+#     amp = amp()
+#     logger.info(f'amp => {amp}')
+#
+#     model.train()
+#     train_meter, sota = FitMeter(), None
+#     for global_step, batch in tqdm(enumerate(train_loader, start=1), desc=f'train', total=scheduler.num_training_steps):
+#         with amp:
+#             loss = model(batch, meter=train_meter) / acc_interval
+#             if dist.is_initialized():
+#                 dist.all_reduce(loss)
+#         amp.scale(loss).backward()
+#
+#         if grad_norm > 0:
+#             amp.unscale(optimizer=optimizer)
+#             torch.nn.utils.clip_grad_norm_(
+#                 parameters=model.parameters(),
+#                 max_norm=grad_norm,
+#             )
+#
+#         amp.step(optimizer=optimizer)
+#         scheduler.step()
+#
+#         if global_step % log_interval == 0:
+#             train_meter.gather().log(stage='train', iteration=global_step, out_dir=out_dir)
+#             train_meter = FitMeter()
+#
+#         if global_step >= scheduler.num_training_steps:
+#             break
+#
+#
+# def train_translator(setup_env: Type[init_env] = init_env,
+#                      train_fn: Type[train_translator_rank] = train_translator_rank, **kwargs):
+#     out_dir = setup_env(project_out_dir=project_out_dir, **kwargs['@aku'])
+#
+#     try:
+#         torch.multiprocessing.spawn(
+#             train_fn, args=(out_dir,),
+#             nprocs=torch.cuda.device_count(),
+#         )
+#     finally:
+#         dist.destroy_process_group()
