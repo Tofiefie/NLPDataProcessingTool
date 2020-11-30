@@ -186,3 +186,95 @@
 #             )
 #
 #             transition = self.classifier(tensor[..., -1, :])  # [b, k, vocab]
+#             transition = mask_fill(transition, *forbidden_tokens)
+#
+#             transition, next_token = self.classifier.topk(transition, k=k)  # [b, k, l]
+#             transition[done[..., None].expand_as(transition)] = 0
+#
+#             scores = scores[..., None] + transition
+#             normed_scores = scores * (lengths[..., None] ** -length_penalty)
+#             normed_scores = normed_scores.flatten(start_dim=-2)  # [b, kl]
+#             _, index = torch.topk(normed_scores, k=k, dim=-1)  # [b, k]
+#
+#             index1, index2 = index // next_token.size()[-1], index % next_token.size()[-1]
+#
+#             att_cache = self.decoder.gather(caches=att_cache, dim=1, index=index1[..., None, None, None])
+#
+#             tokens = gather(tensor=tokens, dim=1, index=index1[..., None])  # [b, k, t]
+#             tokens = torch.cat([tokens, next_token[index0, index1, index2, None]], dim=-1)  # [b, k, t+1]
+#             scores = scores[index0, index1, index2]
+#
+#             done = done[index0, index1] | (tokens[..., -1] == self.eos_index)
+#             lengths = lengths[index0, index1] + (~done).float()
+#             if done.all().item():
+#                 break
+#
+#         scores, index = torch.max(scores, dim=1, keepdim=False)
+#         lengths, _ = torch.max(lengths, dim=1, keepdim=False)
+#         tokens = gather(tokens, dim=1, index=index[:, None, None])
+#
+#         prd = cat_padded_sequence(tokens[:, 0, 1:], token_sizes=lengths - 1)
+#
+#         meter.src.update(batch["src"])
+#         meter.tgt.update(batch["tgt"])
+#         meter.prd.update(prd)
+#         meter.acc.update_by_sequence(prd, batch["tgt"])
+#
+#         return prd
+#
+#
+# class Adam(optim.Adam):
+#     def __init__(self, lr: float = 7e-4, beta1: float = 0.9, beta2: float = 0.98,
+#                  weight_decay: float = 1e-4, amsgrad: bool = False, *, model: nn.Module, **kwargs) -> None:
+#         params_with_decay, params_without_decay = optim.divide_groups(model)
+#         super(Adam, self).__init__(
+#             lr=lr, beta1=beta1, beta2=beta2, amsgrad=amsgrad, params=[
+#                 {'params': params_with_decay, 'weight_decay': weight_decay},
+#                 {'params': params_without_decay, 'weight_decay': 0.},
+#             ]
+#         )
+#
+#
+# class InverseSquareRootScheduler(sched.InverseSquareRootScheduler):
+#     def __init__(self, num_training_steps: int = 20_0000, num_warmup_steps: int = 5000, *,
+#                  optimizer: Optimizer, last_epoch: int = -1, **kwargs) -> None:
+#         super(InverseSquareRootScheduler, self).__init__(
+#             num_training_steps=num_training_steps, num_warmup_steps=num_warmup_steps,
+#             optimizer=optimizer, last_epoch=last_epoch, **kwargs,
+#         )
+#
+#
+# def train_translator_rank(
+#         rank: int, out_dir: Path, /,
+#         setup_rank: Union[Type[init_rank]] = init_rank,
+#         data: Datasets = wmt14deen,
+#         model: Type[Translator] = Translator,
+#         optimizer: Type[Adam] = Adam,
+#         scheduler: Type[InverseSquareRootScheduler] = InverseSquareRootScheduler,
+#         grad_norm: float = -1,
+#         amp: Amp = fp16,
+#         use_compile: bool = True,
+#         acc_interval: int = 1,
+#         log_interval: int = 1 if DEBUG else 50,
+#         dev_interval: int = 10 if DEBUG else 2000):
+#     device = setup_rank(rank, out_dir)
+#
+#     (train_loader, dev_loader, test_loader), (src_plm, tgt_plm) = data()
+#
+#     model = model(
+#         src_tokenizer=src_plm.tokenizer,
+#         tgt_tokenizer=tgt_plm.tokenizer,
+#     ).to(device=device)
+#     if dist.is_initialized():
+#         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[device])
+#     if use_compile:
+#         model = torch.compile(model=model, fullgraph=True)
+#
+#     logger.info(f'model => {model}')
+#
+#     optimizer = optimizer(model=model)
+#     logger.info(f'optimizer => {optimizer}')
+#
+#     scheduler = scheduler(optimizer=optimizer)
+#     logger.info(f'scheduler => {scheduler}')
+#
