@@ -11,3 +11,7 @@ dataclasses
 colorlog
 tabulate
 matplotlib
+hypothesis
+aku
+torchrua
+torchdevice
