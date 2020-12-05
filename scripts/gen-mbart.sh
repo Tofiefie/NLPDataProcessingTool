@@ -13,4 +13,5 @@ for BATCH in 1024; do
 
             for SEED in 42; do
 
-              echo "exp${counte
+              echo "exp${counter}:" >>scripts/mbart.mk
+              echo "\tSTUDY=grid-mbart BATCH=${BATCH} SMOOTH=${SMOOTH} TUNING=${TUNING} BETA2=${B
