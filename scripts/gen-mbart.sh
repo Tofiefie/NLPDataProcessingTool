@@ -15,4 +15,10 @@ for BATCH in 1024; do
 
               echo "exp${counter}:" >>scripts/mbart.mk
               echo "\tSTUDY=grid-mbart BATCH=${BATCH} SMOOTH=${SMOOTH} TUNING=${TUNING} BETA2=${BETA2} LR=${LR} DECAY=${DECAY} zsh scripts/mbart.sh" >>scripts/mbart.mk
-              echo "" >>scripts/mbart.
+              echo "" >>scripts/mbart.mk
+              targets+=("exp${counter}")
+              counter+=1
+
+            done
+
+ 
