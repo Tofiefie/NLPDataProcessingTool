@@ -21,4 +21,11 @@ for BATCH in 1024; do
 
             done
 
- 
+          done
+        done
+      done
+    done
+  done
+done
+
+echo "all: ${targets}" >>scrip
