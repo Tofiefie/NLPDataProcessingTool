@@ -28,4 +28,5 @@ for BATCH in 1024; do
   done
 done
 
-echo "all: ${targets}" >>scrip
+echo "all: ${targets}" >>scripts/mbart.mk
+echo "" >>scripts/mbart.mk
