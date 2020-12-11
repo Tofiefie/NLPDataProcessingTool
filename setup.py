@@ -11,4 +11,5 @@ with (root_dir / 'requirements.txt').open(mode='r', encoding='utf-8') as fp:
 
 setup(
     name=name,
-    version
+    version='0.4.0',
+    packages=[package for package in find_packages() if package.startswith(
