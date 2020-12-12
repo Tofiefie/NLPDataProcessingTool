@@ -16,3 +16,5 @@ setup(
     url=f'https://speedcell4.github.io/torchglyph',
     license='MIT',
     author='speedcell4',
+    author_email='speedcell4@gmail.com',
+    description='Data Processor Combinators for Natural Language
