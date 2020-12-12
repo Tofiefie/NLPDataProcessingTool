@@ -12,4 +12,7 @@ with (root_dir / 'requirements.txt').open(mode='r', encoding='utf-8') as fp:
 setup(
     name=name,
     version='0.4.0',
-    packages=[package for package in find_packages() if package.startswith(
+    packages=[package for package in find_packages() if package.startswith(name)],
+    url=f'https://speedcell4.github.io/torchglyph',
+    license='MIT',
+    author='speedcell4',
