@@ -12,4 +12,7 @@ def test_word_vocab00():
     ])
 
     index1 = vocab.encode('label1')
-    index2 = v
+    index2 = vocab.encode('label2')
+    index3 = vocab.encode('label3')
+
+    assert vocab.inv(index1) == 'labe
