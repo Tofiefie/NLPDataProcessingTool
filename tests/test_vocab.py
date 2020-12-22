@@ -19,4 +19,6 @@ def test_word_vocab00():
     assert vocab.inv(index2) == 'label2'
     assert vocab.inv(index3) == '<unk>'
 
-    assert vocab.de
+    assert vocab.decode(index1) == 'label1'
+    assert vocab.decode(index2) == 'label2'
+    assert vocab.decode(index3) ==
