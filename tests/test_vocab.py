@@ -21,4 +21,7 @@ def test_word_vocab00():
 
     assert vocab.decode(index1) == 'label1'
     assert vocab.decode(index2) == 'label2'
-    assert vocab.decode(index3) ==
+    assert vocab.decode(index3) == '<unk>'
+
+    index = vocab.encode_batch(['label1', 'label2', 'label3'])
+    assert vocab.inv_batch(ind
