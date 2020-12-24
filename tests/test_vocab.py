@@ -25,4 +25,8 @@ def test_word_vocab00():
 
     index = vocab.encode_batch(['label1', 'label2', 'label3'])
     assert vocab.inv_batch(index) == ['label1', 'label2', '<unk>']
-    assert vocab.decode_batch(index) == ['label1', 'la
+    assert vocab.decode_batch(index) == ['label1', 'label2', '<unk>']
+
+
+def test_word_vocab01():
+    vocab = WordVocab[str, List[int]](unk_token='<
