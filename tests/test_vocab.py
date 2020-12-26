@@ -36,4 +36,6 @@ def test_word_vocab01():
         # 'but this one is missing',
     ])
 
-    index1 = vocab.encode('this 
+    index1 = vocab.encode('this is the first sentence, and it is great')
+    index2 = vocab.encode('another fantastic sentence here')
+ 
