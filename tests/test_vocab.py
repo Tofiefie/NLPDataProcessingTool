@@ -29,4 +29,7 @@ def test_word_vocab00():
 
 
 def test_word_vocab01():
-    vocab = WordVocab[str, List[int]](unk_token='<
+    vocab = WordVocab[str, List[int]](unk_token='<unk>')
+    vocab.train_from_iterator([
+        'this is the first sentence, and it is great',
+        'anothe
