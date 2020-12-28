@@ -38,4 +38,6 @@ def test_word_vocab01():
 
     index1 = vocab.encode('this is the first sentence, and it is great')
     index2 = vocab.encode('another fantastic sentence here')
- 
+    index3 = vocab.encode('but this one is missing')
+
+    assert vocab.inv(index1) == ['this', 'is'
