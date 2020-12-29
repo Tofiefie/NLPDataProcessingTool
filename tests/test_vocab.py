@@ -45,4 +45,7 @@ def test_word_vocab01():
     assert vocab.inv(index3) == ['<unk>', 'this', '<unk>', 'is', '<unk>']
 
     assert vocab.decode(index1) == 'this is the first sentence , and it is great'
-    assert vocab.decode(index2) == 'another fantastic sentence
+    assert vocab.decode(index2) == 'another fantastic sentence here'
+    assert vocab.decode(index3) == '<unk> this <unk> is <unk>'
+
+    index = v
