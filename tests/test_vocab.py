@@ -44,4 +44,5 @@ def test_word_vocab01():
     assert vocab.inv(index2) == ['another', 'fantastic', 'sentence', 'here']
     assert vocab.inv(index3) == ['<unk>', 'this', '<unk>', 'is', '<unk>']
 
-    assert vocab.decode(index1) == 'this is the first se
+    assert vocab.decode(index1) == 'this is the first sentence , and it is great'
+    assert vocab.decode(index2) == 'another fantastic sentence
