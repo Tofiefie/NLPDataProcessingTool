@@ -48,4 +48,6 @@ def test_word_vocab01():
     assert vocab.decode(index2) == 'another fantastic sentence here'
     assert vocab.decode(index3) == '<unk> this <unk> is <unk>'
 
-    index = v
+    index = vocab.encode_batch([
+        'this is the first sentence, and it is great',
+        'another fan
