@@ -50,4 +50,8 @@ def test_word_vocab01():
 
     index = vocab.encode_batch([
         'this is the first sentence, and it is great',
-        'another fan
+        'another fantastic sentence here',
+        'but this one is missing',
+    ])
+    assert vocab.inv_batch(index) == [
+        ['
