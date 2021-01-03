@@ -54,4 +54,5 @@ def test_word_vocab01():
         'but this one is missing',
     ])
     assert vocab.inv_batch(index) == [
-        ['
+        ['this', 'is', 'the', 'first', 'sentence', ',', 'and', 'it', 'is', 'great'],
+        ['another',
