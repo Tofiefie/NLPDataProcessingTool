@@ -58,4 +58,6 @@ def test_word_vocab01():
         ['another', 'fantastic', 'sentence', 'here'],
         ['<unk>', 'this', '<unk>', 'is', '<unk>'],
     ]
-  
+    assert vocab.decode_batch(index) == [
+        'this is the first sentence , and it is great',
+    
