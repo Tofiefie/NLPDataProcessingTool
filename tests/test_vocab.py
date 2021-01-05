@@ -73,4 +73,5 @@ def test_word_vocab11():
         # 'but this one is missing'.split(),
     ])
 
-    index1 = vocab.encode('this is 
+    index1 = vocab.encode('this is the first sentence and it is great'.split())
+    index2 = vocab.encode('another fantastic sentence here'.sp
