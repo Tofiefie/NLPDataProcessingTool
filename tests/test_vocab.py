@@ -69,4 +69,8 @@ def test_word_vocab11():
     vocab = WordVocab[List[str], List[int]](unk_token='<unk>')
     vocab.train_from_iterator([
         'this is the first sentence and it is great'.split(),
-        'another fantastic sentence her
+        'another fantastic sentence here'.split(),
+        # 'but this one is missing'.split(),
+    ])
+
+    index1 = vocab.encode('this is 
