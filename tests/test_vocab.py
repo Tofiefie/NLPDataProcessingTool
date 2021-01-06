@@ -77,4 +77,5 @@ def test_word_vocab11():
     index2 = vocab.encode('another fantastic sentence here'.split())
     index3 = vocab.encode('but this one is missing'.split())
 
-    assert vocab.inv(index1) == 
+    assert vocab.inv(index1) == ['this', 'is', 'the', 'first', 'sentence', 'and', 'it', 'is', 'great']
+    assert vocab.inv(index2) 
