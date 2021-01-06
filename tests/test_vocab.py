@@ -79,4 +79,7 @@ def test_word_vocab11():
 
     assert vocab.inv(index1) == ['this', 'is', 'the', 'first', 'sentence', 'and', 'it', 'is', 'great']
     assert vocab.inv(index2) == ['another', 'fantastic', 'sentence', 'here']
-    assert vocab.inv(index3) == ['<unk>', 'this', '<un
+    assert vocab.inv(index3) == ['<unk>', 'this', '<unk>', 'is', '<unk>']
+
+    assert vocab.decode(index1) == 'this is the first sentence and it is great'
+    assert
