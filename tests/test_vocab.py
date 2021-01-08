@@ -83,4 +83,7 @@ def test_word_vocab11():
 
     assert vocab.decode(index1) == 'this is the first sentence and it is great'
     assert vocab.decode(index2) == 'another fantastic sentence here'
-    assert vocab.decode(index3) == '<
+    assert vocab.decode(index3) == '<unk> this <unk> is <unk>'
+
+    index = vocab.encode_batch([
+        'this is the first sentence and it is grea
