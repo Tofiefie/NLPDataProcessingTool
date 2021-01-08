@@ -86,4 +86,6 @@ def test_word_vocab11():
     assert vocab.decode(index3) == '<unk> this <unk> is <unk>'
 
     index = vocab.encode_batch([
-        'this is the first sentence and it is grea
+        'this is the first sentence and it is great'.split(),
+        'another fantastic sentence here'.split(),
+        'but this one is missing'.split(
