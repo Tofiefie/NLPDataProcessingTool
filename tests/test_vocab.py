@@ -88,4 +88,7 @@ def test_word_vocab11():
     index = vocab.encode_batch([
         'this is the first sentence and it is great'.split(),
         'another fantastic sentence here'.split(),
-        'but this one is missing'.split(
+        'but this one is missing'.split(),
+    ])
+    assert vocab.inv_batch(index) == [
+        ['this', 'is', 'the', 'first', 'sen
