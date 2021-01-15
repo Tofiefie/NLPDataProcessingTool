@@ -92,4 +92,7 @@ def test_word_vocab11():
     ])
     assert vocab.inv_batch(index) == [
         ['this', 'is', 'the', 'first', 'sentence', 'and', 'it', 'is', 'great'],
-        ['another', 'fantastic', 'sentence', 'her
+        ['another', 'fantastic', 'sentence', 'here'],
+        ['<unk>', 'this', '<unk>', 'is', '<unk>'],
+    ]
+    assert vocab.decode_batch(index) == 
