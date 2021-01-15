@@ -97,4 +97,10 @@ def test_word_vocab11():
     ]
     assert vocab.decode_batch(index) == [
         'this is the first sentence and it is great',
-        'another fantastic sentence here'
+        'another fantastic sentence here',
+        '<unk> this <unk> is <unk>',
+    ]
+
+
+def test_word_piece_vocab01_without_unk():
+    vocab = WordPieceVo
