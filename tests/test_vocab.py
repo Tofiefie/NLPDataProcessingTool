@@ -110,4 +110,5 @@ def test_word_piece_vocab01_without_unk():
         # 'but this one is missing',
     ])
 
-   
+    index1 = vocab.encode('this is the first sentence, and it is great')
+    index2 = vocab.encode('an
