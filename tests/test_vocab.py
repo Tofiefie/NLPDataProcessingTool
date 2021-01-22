@@ -106,3 +106,8 @@ def test_word_piece_vocab01_without_unk():
     vocab = WordPieceVocab[str, List[int]]()
     vocab.train_from_iterator([
         'this is the first sentence, and it is great',
+        'another fantastic sentence here',
+        # 'but this one is missing',
+    ])
+
+   
