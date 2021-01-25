@@ -114,4 +114,4 @@ def test_word_piece_vocab01_without_unk():
     index2 = vocab.encode('another fantastic sentence here')
     # index3 = vocab.encode('but this one is missing')
 
-    assert v
+    assert vocab.inv(index1) == ['this', 'is', 'the', 'first', 'sentence', ',', 'and', 'it', 'is', 'g
