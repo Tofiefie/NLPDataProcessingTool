@@ -116,4 +116,6 @@ def test_word_piece_vocab01_without_unk():
 
     assert vocab.inv(index1) == ['this', 'is', 'the', 'first', 'sentence', ',', 'and', 'it', 'is', 'great']
     assert vocab.inv(index2) == ['another', 'fantastic', 'sentence', 'here']
-    # assert voc
+    # assert vocab.inv(index3) == ['<unk>', 'this', 'o', '##n', '##e', 'is', '<unk>']
+
+    assert voc
