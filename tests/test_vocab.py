@@ -127,3 +127,6 @@ def test_word_piece_vocab01_without_unk():
         'another fantastic sentence here',
         # 'but this one is missing',
     ])
+    assert vocab.inv_batch(index) == [
+        ['this', 'is', 'the', 'first', 'sentence', ',', 'and', 'it', 'is', 'great'],
+    
