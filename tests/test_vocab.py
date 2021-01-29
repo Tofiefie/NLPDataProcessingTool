@@ -120,4 +120,7 @@ def test_word_piece_vocab01_without_unk():
 
     assert vocab.decode(index1) == 'this is the first sentence , and it is great'
     assert vocab.decode(index2) == 'another fantastic sentence here'
-    # assert vocab.decode(index3) == '<unk> this o ##n 
+    # assert vocab.decode(index3) == '<unk> this o ##n ##e is <unk>'
+
+    index = vocab.encode_batch([
+        'this is the first sentence, and it is great'
