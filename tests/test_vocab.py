@@ -130,4 +130,7 @@ def test_word_piece_vocab01_without_unk():
     assert vocab.inv_batch(index) == [
         ['this', 'is', 'the', 'first', 'sentence', ',', 'and', 'it', 'is', 'great'],
         ['another', 'fantastic', 'sentence', 'here'],
-        # ['<unk>', 'this', 
+        # ['<unk>', 'this', 'o', '##n', '##e', 'is', '<unk>'],
+    ]
+    assert vocab.decode_batch(index) == [
+        'this is
