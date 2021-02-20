@@ -9,4 +9,8 @@ data_dir = (Path.home() / '.torchglyph').resolve()
 if not data_dir.exists():
     data_dir.mkdir(parents=True, exist_ok=True)
 
-host_name: str = socket.gethost
+host_name: str = socket.gethostname()
+system_name: str = platform.system().lower()
+
+if system_name != 'darwin':
+    plt.switch_b
