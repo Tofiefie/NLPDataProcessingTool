@@ -15,4 +15,4 @@ system_name: str = platform.system().lower()
 if system_name != 'darwin':
     plt.switch_backend('agg')
 
-DEBUG = os.environ.get('DEBUG', f"{system_name == 'darwin'}").lower() in
+DEBUG = os.environ.get('DEBUG', f"{system_name == 'darwin'}").lower() in ('1', 'y', 'yes', 't', 'true')
