@@ -2,4 +2,8 @@ from aku import Aku
 
 from torchglyph.summary import summary
 
-a
+aku = Aku()
+
+aku.register(summary)
+
+aku.run()
