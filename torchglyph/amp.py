@@ -9,4 +9,8 @@ from torch.optim import Optimizer
 
 
 class amp(object):
-    def __init__
+    def __init__(self) -> None:
+        super(amp, self).__init__()
+
+    def __repr__(self) -> str:
+        retu
