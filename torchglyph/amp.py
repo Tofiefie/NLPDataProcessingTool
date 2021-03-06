@@ -16,3 +16,9 @@ class amp(object):
         return f'{self.__class__.__name__}({self.extra_repr()})'
 
     def extra_repr(self) -> str:
+        return ''
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_ty
