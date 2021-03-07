@@ -21,4 +21,8 @@ class amp(object):
     def __enter__(self):
         return self
 
-    def __exit__(self, exc_ty
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
+
+    def scale(self, loss: Tensor) -> Tensor:
+        raise NotImplemente
