@@ -35,4 +35,7 @@ class amp(object):
 
 
 class fp32(amp):
-    de
+    def scale(self, loss: Tensor) -> Tensor:
+        return loss
+
+    def unscale(self, opt
