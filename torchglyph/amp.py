@@ -30,4 +30,9 @@ class amp(object):
     def unscale(self, optimizer: Optimizer) -> None:
         raise NotImplementedError
 
- 
+    def step(self, optimizer: Optimizer) -> None:
+        raise NotImplementedError
+
+
+class fp32(amp):
+    de
