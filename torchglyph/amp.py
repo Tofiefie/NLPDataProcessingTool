@@ -25,4 +25,9 @@ class amp(object):
         pass
 
     def scale(self, loss: Tensor) -> Tensor:
-        raise NotImplemente
+        raise NotImplementedError
+
+    def unscale(self, optimizer: Optimizer) -> None:
+        raise NotImplementedError
+
+ 
