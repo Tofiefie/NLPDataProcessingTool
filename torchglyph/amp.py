@@ -42,4 +42,9 @@ class fp32(amp):
         pass
 
     def step(self, optimizer: Optimizer) -> None:
-  
+        optimizer.step()
+        optimizer.zero_grad()
+
+
+class fp16(amp):
+   
