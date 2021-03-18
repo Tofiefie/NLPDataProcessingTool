@@ -49,4 +49,8 @@ class fp32(amp):
 class fp16(amp):
     def __init__(self) -> None:
         super(fp16, self).__init__()
-        self.grad_sca
+        self.grad_scaler = GradScaler()
+
+    def __enter__(self):
+        self.env = autocast()
+        self.env.__e
