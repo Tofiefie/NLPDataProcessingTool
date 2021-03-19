@@ -53,4 +53,8 @@ class fp16(amp):
 
     def __enter__(self):
         self.env = autocast()
-        self.env.__e
+        self.env.__enter__()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        sel
