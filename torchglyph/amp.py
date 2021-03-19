@@ -57,4 +57,7 @@ class fp16(amp):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        sel
+        self.env.__exit__(exc_type, exc_val, exc_tb)
+        del self.env
+
+    def scale(self, loss: Ten
