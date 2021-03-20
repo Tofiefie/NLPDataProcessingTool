@@ -60,4 +60,7 @@ class fp16(amp):
         self.env.__exit__(exc_type, exc_val, exc_tb)
         del self.env
 
-    def scale(self, loss: Ten
+    def scale(self, loss: Tensor) -> Tensor:
+        return self.grad_scaler.scale(loss)
+
+    def unscale(self, optimizer
