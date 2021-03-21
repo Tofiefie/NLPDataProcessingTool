@@ -63,4 +63,7 @@ class fp16(amp):
     def scale(self, loss: Tensor) -> Tensor:
         return self.grad_scaler.scale(loss)
 
-    def unscale(self, optimizer
+    def unscale(self, optimizer: Optimizer) -> None:
+        return self.grad_scaler.unscale_(optimizer)
+
+    def s
