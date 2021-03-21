@@ -66,4 +66,6 @@ class fp16(amp):
     def unscale(self, optimizer: Optimizer) -> None:
         return self.grad_scaler.unscale_(optimizer)
 
-    def s
+    def step(self, optimizer: Optimizer) -> None:
+        self.grad_scaler.step(optimizer)
+        self.g
