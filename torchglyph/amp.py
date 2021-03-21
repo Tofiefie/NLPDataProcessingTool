@@ -68,4 +68,11 @@ class fp16(amp):
 
     def step(self, optimizer: Optimizer) -> None:
         self.grad_scaler.step(optimizer)
-        self.g
+        self.grad_scaler.update()
+        optimizer.zero_grad()
+
+
+Amp = Union[
+    Type[fp32],
+    Type[fp16],
+]
