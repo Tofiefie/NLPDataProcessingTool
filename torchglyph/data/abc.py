@@ -8,4 +8,6 @@ from typing import List
 from typing import Tuple
 from typing import Union
 
-from datasets imp
+from datasets import DownloadConfig
+from datasets import DownloadManager
+from torch.utils import data
