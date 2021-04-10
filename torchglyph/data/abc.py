@@ -31,4 +31,5 @@ class DataStore(object, metaclass=ABCMeta):
     def paths(cls, root: Path = data_dir, **kwargs) -> List[Path]:
         out = []
 
-      
+        dataset_name = getattr(cls, 'name', cls.__name__).lower()
+        for url, *names in cls.urls
