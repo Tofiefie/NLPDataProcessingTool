@@ -24,4 +24,7 @@ class DataStore(object, metaclass=ABCMeta):
     name: str
 
     @classmethod
- 
+    def urls(cls, **kwargs) -> List[Tuple[str, ...]]:
+        raise NotImplementedError
+
+    @clas
