@@ -17,4 +17,11 @@ from torchglyph.sampler import SortishBatchSampler
 from torchglyph.sampler import SortishDevSampler
 from torchglyph.sampler import SortishSampler
 
-logger 
+logger = getLogger(__name__)
+
+
+class DataStore(object, metaclass=ABCMeta):
+    name: str
+
+    @classmethod
+ 
