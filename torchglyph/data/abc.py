@@ -27,4 +27,8 @@ class DataStore(object, metaclass=ABCMeta):
     def urls(cls, **kwargs) -> List[Tuple[str, ...]]:
         raise NotImplementedError
 
-    @clas
+    @classmethod
+    def paths(cls, root: Path = data_dir, **kwargs) -> List[Path]:
+        out = []
+
+      
