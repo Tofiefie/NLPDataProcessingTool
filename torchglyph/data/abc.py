@@ -32,4 +32,6 @@ class DataStore(object, metaclass=ABCMeta):
         out = []
 
         dataset_name = getattr(cls, 'name', cls.__name__).lower()
-        for url, *names in cls.urls
+        for url, *names in cls.urls(**kwargs):
+            Download_manager = DownloadManager(
+                dataset_name=datase
