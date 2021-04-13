@@ -36,4 +36,9 @@ class DataStore(object, metaclass=ABCMeta):
             Download_manager = DownloadManager(
                 dataset_name=dataset_name,
                 download_config=DownloadConfig(
-                    cache_dir=root / dataset_
+                    cache_dir=root / dataset_name,
+                    download_desc=f'Downloading {url}',
+                ),
+            )
+
+            a
