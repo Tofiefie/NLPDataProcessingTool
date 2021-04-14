@@ -45,3 +45,10 @@ class DataStore(object, metaclass=ABCMeta):
             out.append(archive)
 
         return out
+
+    @classmethod
+    def load(cls, **kwargs):
+        raise NotImplementedError
+
+    @classmethod
+    de
