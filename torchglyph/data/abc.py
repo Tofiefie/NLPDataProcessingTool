@@ -41,4 +41,7 @@ class DataStore(object, metaclass=ABCMeta):
                 ),
             )
 
-            a
+            archive = Path(Download_manager.download_and_extract(url))
+            out.append(archive)
+
+        return out
