@@ -58,4 +58,5 @@ class DataStore(object, metaclass=ABCMeta):
         return tokenize
 
     @classmethod
-   
+    def get_collate_fn(cls, **kwargs):
+        def collate_fn(examples: List[Dict[str, Any]]) -> D
