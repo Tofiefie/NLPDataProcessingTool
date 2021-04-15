@@ -59,4 +59,10 @@ class DataStore(object, metaclass=ABCMeta):
 
     @classmethod
     def get_collate_fn(cls, **kwargs):
-        def collate_fn(examples: List[Dict[str, Any]]) -> D
+        def collate_fn(examples: List[Dict[str, Any]]) -> Dict[str, Any]:
+            raise NotImplementedError
+
+        return collate_fn
+
+    @classmethod
+    def pred
