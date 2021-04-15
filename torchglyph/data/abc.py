@@ -52,4 +52,10 @@ class DataStore(object, metaclass=ABCMeta):
 
     @classmethod
     def get_tokenize_fn(cls, **kwargs):
-        def tokenize(examples: Dict[str, List[Any]]) -> 
+        def tokenize(examples: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+            raise NotImplementedError
+
+        return tokenize
+
+    @classmethod
+   
