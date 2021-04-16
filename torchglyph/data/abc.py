@@ -75,4 +75,5 @@ class DataStore(object, metaclass=ABCMeta):
 
 class DataLoader(data.DataLoader):
     @classmethod
-    def new(
+    def new(cls, data_stores: Tuple[DataStore, ...],
+            collate_fn, batch_size: Union[int, T
