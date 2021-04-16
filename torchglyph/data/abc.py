@@ -65,4 +65,8 @@ class DataStore(object, metaclass=ABCMeta):
         return collate_fn
 
     @classmethod
-    def pred
+    def predicate(cls, example) -> bool:
+        raise NotImplementedError
+
+    @classmethod
+    def new(cls, **
