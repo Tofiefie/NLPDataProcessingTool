@@ -69,4 +69,10 @@ class DataStore(object, metaclass=ABCMeta):
         raise NotImplementedError
 
     @classmethod
-    def new(cls, **
+    def new(cls, **kwargs):
+        raise NotImplementedError
+
+
+class DataLoader(data.DataLoader):
+    @classmethod
+    def new(
