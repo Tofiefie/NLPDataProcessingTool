@@ -76,4 +76,5 @@ class DataStore(object, metaclass=ABCMeta):
 class DataLoader(data.DataLoader):
     @classmethod
     def new(cls, data_stores: Tuple[DataStore, ...],
-            collate_fn, batch_size: Union[int, T
+            collate_fn, batch_size: Union[int, Tuple[int, ...]],
+            drop_last: bool = False, section_size: int = 1 << 12) -> List['DataLoader']
