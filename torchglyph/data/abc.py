@@ -77,4 +77,8 @@ class DataLoader(data.DataLoader):
     @classmethod
     def new(cls, data_stores: Tuple[DataStore, ...],
             collate_fn, batch_size: Union[int, Tuple[int, ...]],
-            drop_last: bool = False, section_size: int = 1 << 12) -> List['DataLoader']
+            drop_last: bool = False, section_size: int = 1 << 12) -> List['DataLoader']:
+        assert len(data_stores) > 0
+
+        batch_sizes = batch_size
+        if isin
