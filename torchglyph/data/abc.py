@@ -81,4 +81,7 @@ class DataLoader(data.DataLoader):
         assert len(data_stores) > 0
 
         batch_sizes = batch_size
-        if isin
+        if isinstance(batch_size, int):
+            batch_sizes = itertools.repeat(batch_size)
+
+     
