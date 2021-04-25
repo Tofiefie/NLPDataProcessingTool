@@ -84,4 +84,5 @@ class DataLoader(data.DataLoader):
         if isinstance(batch_size, int):
             batch_sizes = itertools.repeat(batch_size)
 
-     
+        loaders = []
+        for index, (datastore, batch_size) in enumerate(zip(data_stores, batch_sizes))
