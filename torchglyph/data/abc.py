@@ -85,4 +85,6 @@ class DataLoader(data.DataLoader):
             batch_sizes = itertools.repeat(batch_size)
 
         loaders = []
-        for index, (datastore, batch_size) in enumerate(zip(data_stores, batch_sizes))
+        for index, (datastore, batch_size) in enumerate(zip(data_stores, batch_sizes)):
+            sampler = SortishSampler(datastore, section_size=section_size)
+            log
