@@ -87,4 +87,6 @@ class DataLoader(data.DataLoader):
         loaders = []
         for index, (datastore, batch_size) in enumerate(zip(data_stores, batch_sizes)):
             sampler = SortishSampler(datastore, section_size=section_size)
-            log
+            logger.debug(f'{index}.sampler => {sampler}')
+
+            batch_sampler = (SortishBatchSampler 
