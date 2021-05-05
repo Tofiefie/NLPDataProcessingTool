@@ -90,4 +90,7 @@ class DataLoader(data.DataLoader):
             logger.debug(f'{index}.sampler => {sampler}')
 
             batch_sampler = (SortishBatchSampler if index == 0 else SortishDevSampler)(
-                dataset=datastore, sampler=sampler, batch_size=batch_size
+                dataset=datastore, sampler=sampler, batch_size=batch_size,
+                drop_last=index == 0 and drop_last,
+            )
+            logger.debu
