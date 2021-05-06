@@ -93,4 +93,7 @@ class DataLoader(data.DataLoader):
                 dataset=datastore, sampler=sampler, batch_size=batch_size,
                 drop_last=index == 0 and drop_last,
             )
-            logger.debu
+            logger.debug(f'{index}.batch_sampler => {batch_sampler}')
+
+            loaders.append(DataLoader(
+         
