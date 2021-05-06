@@ -99,4 +99,6 @@ class DataLoader(data.DataLoader):
                 dataset=datastore,
                 collate_fn=collate_fn,
                 batch_sampler=batch_sampler,
-    
+            ))
+
+        return loaders
