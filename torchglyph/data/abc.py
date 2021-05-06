@@ -96,4 +96,7 @@ class DataLoader(data.DataLoader):
             logger.debug(f'{index}.batch_sampler => {batch_sampler}')
 
             loaders.append(DataLoader(
-         
+                dataset=datastore,
+                collate_fn=collate_fn,
+                batch_sampler=batch_sampler,
+    
