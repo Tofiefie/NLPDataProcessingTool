@@ -28,4 +28,9 @@ from torchglyph.tokenize_utils import encode_batch
 from torchglyph.tokenize_utils import get_iterator
 from torchglyph.tokenize_utils import train_word_tokenizer
 
-WORD_FILENAME = 'word_to
+WORD_FILENAME = 'word_tokenizer.json'
+TARGET_FILENAME = 'target_tokenizer.json'
+
+
+class ConstituencyParsing(DataStore):
+    
