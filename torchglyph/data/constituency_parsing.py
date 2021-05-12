@@ -33,4 +33,7 @@ TARGET_FILENAME = 'target_tokenizer.json'
 
 
 class ConstituencyParsing(DataStore):
-    
+    lang: str
+
+    @classmethod
+    def get_tokenize_fn(cls, plm: PLM, word_tokenizer: Tokenizer, target_tokenizer: Tok
