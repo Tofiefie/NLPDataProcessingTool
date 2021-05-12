@@ -40,3 +40,5 @@ class ConstituencyParsing(DataStore):
         def tokenize(examples: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
             token, segment_size = plm.tokenize_batch(examples['word'], add_prefix_space=True)
 
+            return {
+                'word': encode_batch(examples['word'], tokenizer=wor
