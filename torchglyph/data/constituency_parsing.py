@@ -36,4 +36,5 @@ class ConstituencyParsing(DataStore):
     lang: str
 
     @classmethod
-    def get_tokenize_fn(cls, plm: PLM, word_tokenizer: Tokenizer, target_tokenizer: Tok
+    def get_tokenize_fn(cls, plm: PLM, word_tokenizer: Tokenizer, target_tokenizer: Tokenizer, **kwargs):
+        def tokenize(examples: Dict[str, List[Any]]) -> Dict[str, List[An
