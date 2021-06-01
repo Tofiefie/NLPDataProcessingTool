@@ -51,4 +51,8 @@ class ConstituencyParsing(DataStore):
         return tokenize
 
     @classmethod
-    de
+    def predicate(cls, example) -> bool:
+        return True
+
+    @classmethod
+    def get_collate_fn(cls, d
