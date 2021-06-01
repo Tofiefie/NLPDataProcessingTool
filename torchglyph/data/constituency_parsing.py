@@ -44,4 +44,5 @@ class ConstituencyParsing(DataStore):
                 'word': encode_batch(examples['word'], tokenizer=word_tokenizer),
                 'token': token,
                 'segment_size': segment_size,
-                'target':
+                'target': encode_batch(examples['target'], tokenizer=target_tokenizer),
+                'size': [len(examp
