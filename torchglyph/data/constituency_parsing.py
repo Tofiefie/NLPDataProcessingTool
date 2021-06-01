@@ -45,4 +45,10 @@ class ConstituencyParsing(DataStore):
                 'token': token,
                 'segment_size': segment_size,
                 'target': encode_batch(examples['target'], tokenizer=target_tokenizer),
-                'size': [len(examp
+                'size': [len(example) for example in examples['target']],
+            }
+
+        return tokenize
+
+    @classmethod
+    de
