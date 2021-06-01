@@ -41,4 +41,7 @@ class ConstituencyParsing(DataStore):
             token, segment_size = plm.tokenize_batch(examples['word'], add_prefix_space=True)
 
             return {
-                'word': encode_batch(examples['word'], tokenizer=wor
+                'word': encode_batch(examples['word'], tokenizer=word_tokenizer),
+                'token': token,
+                'segment_size': segment_size,
+                'target':
