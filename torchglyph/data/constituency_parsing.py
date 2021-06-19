@@ -58,4 +58,5 @@ class ConstituencyParsing(DataStore):
     def get_collate_fn(cls, device: Device, **kwargs):
         def collate_fn(examples: List[Dict[str, Any]]) -> Dict[str, Any]:
             return {
-                'word': cat_sequence([example['word'] for example in examples]).to
+                'word': cat_sequence([example['word'] for example in examples]).to(device=device),
+                'token': cat_sequence([example['token'] for example in examples]).to(devic
