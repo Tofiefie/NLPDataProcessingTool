@@ -59,4 +59,5 @@ class ConstituencyParsing(DataStore):
         def collate_fn(examples: List[Dict[str, Any]]) -> Dict[str, Any]:
             return {
                 'word': cat_sequence([example['word'] for example in examples]).to(device=device),
-                'token': cat_sequence([example['token'] for example in examples]).to(devic
+                'token': cat_sequence([example['token'] for example in examples]).to(device=device),
+                'segment_size': cat_sequence([example['segment_size'] for example in exam
