@@ -60,4 +60,5 @@ class ConstituencyParsing(DataStore):
             return {
                 'word': cat_sequence([example['word'] for example in examples]).to(device=device),
                 'token': cat_sequence([example['token'] for example in examples]).to(device=device),
-                'segment_size': cat_sequence([example['segment_size'] for example in exam
+                'segment_size': cat_sequence([example['segment_size'] for example in examples]).to(device=device),
+                'start': cat_sequence([example['start'] for example in exa
