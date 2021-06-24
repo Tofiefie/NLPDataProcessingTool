@@ -68,4 +68,6 @@ class ConstituencyParsing(DataStore):
 
         return collate_fn
 
-    @classmet
+    @classmethod
+    def load_split(cls, path: Path, **kwargs):
+        for word, tree in iter_ptb(pa
