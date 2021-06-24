@@ -63,4 +63,9 @@ class ConstituencyParsing(DataStore):
                 'segment_size': cat_sequence([example['segment_size'] for example in examples]).to(device=device),
                 'start': cat_sequence([example['start'] for example in examples]).to(device=device),
                 'end': cat_sequence([example['end'] for example in examples]).to(device=device),
-                'target': cat_sequence([example['target'] for
+                'target': cat_sequence([example['target'] for example in examples]).to(device=device),
+            }
+
+        return collate_fn
+
+    @classmet
