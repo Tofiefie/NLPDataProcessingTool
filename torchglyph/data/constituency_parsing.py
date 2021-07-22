@@ -72,3 +72,7 @@ class ConstituencyParsing(DataStore):
     def load_split(cls, path: Path, **kwargs):
         for word, tree in iter_ptb(path=path, do_binarize=True, do_factorize=True):
             start, end, target = zip(*tree)
+            yield dict(word=word, start=start, end=end, target=target)
+
+    @classmethod
+    def loa
