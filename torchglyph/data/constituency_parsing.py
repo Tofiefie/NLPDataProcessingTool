@@ -78,4 +78,7 @@ class ConstituencyParsing(DataStore):
     def load(cls, plm: PLM, **kwargs):
         cache = cache_folder(path=data_dir / cls.name, plm=plm.pretrained_model_name)
         word_cache = str(cache / WORD_FILENAME)
-        target_cache = str(cache / T
+        target_cache = str(cache / TARGET_FILENAME)
+
+        with lock_folder(path=cache):
+            if not all_exits(cache, DATASET
