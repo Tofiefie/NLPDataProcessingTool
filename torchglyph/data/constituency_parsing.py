@@ -75,4 +75,5 @@ class ConstituencyParsing(DataStore):
             yield dict(word=word, start=start, end=end, target=target)
 
     @classmethod
-    def loa
+    def load(cls, plm: PLM, **kwargs):
+        cache = cache_folder(path=data_dir / cls.name, plm=plm.pretrained_mod
