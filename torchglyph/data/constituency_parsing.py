@@ -81,4 +81,5 @@ class ConstituencyParsing(DataStore):
         target_cache = str(cache / TARGET_FILENAME)
 
         with lock_folder(path=cache):
-            if not all_exits(cache, DATASET
+            if not all_exits(cache, DATASETDICT_JSON_FILENAME, WORD_FILENAME, TARGET_FILENAME):
+                train, validation, test = cls.pa
