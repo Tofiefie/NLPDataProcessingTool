@@ -84,4 +84,5 @@ class ConstituencyParsing(DataStore):
             if not all_exits(cache, DATASETDICT_JSON_FILENAME, WORD_FILENAME, TARGET_FILENAME):
                 train, validation, test = cls.paths(**kwargs)
                 ds = DatasetDict(
-                    train=Dataset.from_list(list(c
+                    train=Dataset.from_list(list(cls.load_split(path=train, **kwargs))),
+                    validation=Datas
