@@ -85,4 +85,5 @@ class ConstituencyParsing(DataStore):
                 train, validation, test = cls.paths(**kwargs)
                 ds = DatasetDict(
                     train=Dataset.from_list(list(cls.load_split(path=train, **kwargs))),
-                    validation=Datas
+                    validation=Dataset.from_list(list(cls.load_split(path=validation, **kwargs))),
+                    test=Dataset.from_list(list(c
