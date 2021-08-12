@@ -89,4 +89,5 @@ class ConstituencyParsing(DataStore):
                     test=Dataset.from_list(list(cls.load_split(path=test, **kwargs))),
                 )
 
-                word_tokenizer = 
+                word_tokenizer = train_word_tokenizer(
+                    get_iterator(ds['train'], ds['validation'], column_na
