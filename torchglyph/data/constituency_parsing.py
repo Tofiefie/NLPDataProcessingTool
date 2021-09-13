@@ -90,4 +90,8 @@ class ConstituencyParsing(DataStore):
                 )
 
                 word_tokenizer = train_word_tokenizer(
-                    get_iterator(ds['train'], ds['validation'], column_na
+                    get_iterator(ds['train'], ds['validation'], column_names=['word']),
+                    pre_tokenizer=False, unk_token='<unk>',
+                )
+
+   
