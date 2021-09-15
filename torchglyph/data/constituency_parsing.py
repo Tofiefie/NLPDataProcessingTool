@@ -95,4 +95,6 @@ class ConstituencyParsing(DataStore):
                 )
 
                 target_tokenizer = train_word_tokenizer(
-                    get_iterator(ds['train'], ds['validatio
+                    get_iterator(ds['train'], ds['validation'], column_names=['target']),
+                    pre_tokenizer=False, unk_token='S',
+  
