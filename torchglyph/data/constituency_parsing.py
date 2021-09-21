@@ -102,4 +102,8 @@ class ConstituencyParsing(DataStore):
                 tokenize_fn = cls.get_tokenize_fn(
                     plm=plm,
                     word_tokenizer=word_tokenizer,
-                    target_tokenizer=t
+                    target_tokenizer=target_tokenizer,
+                )
+
+                ds = ds.map(tokenize_fn, batched=True)
+                ds.set
