@@ -108,4 +108,6 @@ class ConstituencyParsing(DataStore):
                 ds = ds.map(tokenize_fn, batched=True)
                 ds.set_format('torch', columns=['word', 'token', 'segment_size', 'start', 'end', 'target'])
 
-    
+                ds.save_to_disk(cache)
+                word_tokenizer.save(word_cache)
+                tar
