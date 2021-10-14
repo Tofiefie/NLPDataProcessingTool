@@ -110,4 +110,7 @@ class ConstituencyParsing(DataStore):
 
                 ds.save_to_disk(cache)
                 word_tokenizer.save(word_cache)
-                tar
+                target_tokenizer.save(target_cache)
+                return ds, word_tokenizer, target_tokenizer
+
+        d
