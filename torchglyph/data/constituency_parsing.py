@@ -113,4 +113,5 @@ class ConstituencyParsing(DataStore):
                 target_tokenizer.save(target_cache)
                 return ds, word_tokenizer, target_tokenizer
 
-        d
+        ds = load_from_disk(cache, keep_in_memory=True)
+        word_tokenizer = Tokenizer.from_file(word_cach
