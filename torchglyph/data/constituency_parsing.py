@@ -119,4 +119,7 @@ class ConstituencyParsing(DataStore):
         return ds, word_tokenizer, target_tokenizer
 
     @classmethod
-    def new(cls, plm: Type[RobertaBase] = RobertaBase, b
+    def new(cls, plm: Type[RobertaBase] = RobertaBase, batch_size: int = 1024, **kwargs):
+        plm = plm(lang=cls.lang)
+
+        ds, word_tokeni
