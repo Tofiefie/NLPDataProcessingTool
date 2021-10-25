@@ -124,4 +124,6 @@ class ConstituencyParsing(DataStore):
 
         ds, word_tokenizer, target_tokenizer = cls.load(plm=plm, **kwargs)
 
-        train, dev, test = DataLoader.new
+        train, dev, test = DataLoader.new(
+            (ds['train'], ds['validation'], ds['test']), batch_size=batch_size,
+            collate
