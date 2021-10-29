@@ -126,4 +126,8 @@ class ConstituencyParsing(DataStore):
 
         train, dev, test = DataLoader.new(
             (ds['train'], ds['validation'], ds['test']), batch_size=batch_size,
-            collate
+            collate_fn=cls.get_collate_fn(device=get_device()),
+            drop_last=False, section_size=4096,
+        )
+
+     
