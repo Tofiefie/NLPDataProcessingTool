@@ -130,4 +130,7 @@ class ConstituencyParsing(DataStore):
             drop_last=False, section_size=4096,
         )
 
-     
+        return (train, dev, test), (plm, word_tokenizer, target_tokenizer)
+
+
+class Wsj(Constitu
