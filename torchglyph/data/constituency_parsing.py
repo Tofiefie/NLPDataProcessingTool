@@ -133,4 +133,7 @@ class ConstituencyParsing(DataStore):
         return (train, dev, test), (plm, word_tokenizer, target_tokenizer)
 
 
-class Wsj(Constitu
+class Wsj(ConstituencyParsing):
+    name = 'wsj'
+    lang = 'en'
+    url_root = 'https://raw.gi
