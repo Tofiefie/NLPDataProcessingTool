@@ -136,4 +136,6 @@ class ConstituencyParsing(DataStore):
 class Wsj(ConstituencyParsing):
     name = 'wsj'
     lang = 'en'
-    url_root = 'https://raw.gi
+    url_root = 'https://raw.githubusercontent.com/thomaslu2000/Incremental-Parsing-Representations/main/data'
+
+    @classmeth
