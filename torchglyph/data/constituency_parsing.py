@@ -138,4 +138,7 @@ class Wsj(ConstituencyParsing):
     lang = 'en'
     url_root = 'https://raw.githubusercontent.com/thomaslu2000/Incremental-Parsing-Representations/main/data'
 
-    @classmeth
+    @classmethod
+    def urls(cls, **kwargs) -> List[Tuple[str, ...]]:
+        return [
+            (f'{c
