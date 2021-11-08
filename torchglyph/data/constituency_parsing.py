@@ -141,4 +141,6 @@ class Wsj(ConstituencyParsing):
     @classmethod
     def urls(cls, **kwargs) -> List[Tuple[str, ...]]:
         return [
-            (f'{c
+            (f'{cls.url_root}/02-21.10way.clean',),
+            (f'{cls.url_root}/22.auto.clean',),
+            (f'{cls.url_roo
