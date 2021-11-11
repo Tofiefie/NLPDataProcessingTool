@@ -143,4 +143,8 @@ class Wsj(ConstituencyParsing):
         return [
             (f'{cls.url_root}/02-21.10way.clean',),
             (f'{cls.url_root}/22.auto.clean',),
-            (f'{cls.url_roo
+            (f'{cls.url_root}/23.auto.clean',),
+        ]
+
+
+wsj = NewType('wsj', Wsj.new)
