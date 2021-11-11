@@ -94,3 +94,12 @@ class Xsum(DataStore):
         plm = plm(lang=cls.lang)
 
         ds = cls.load(plm=plm)
+        ds = ds.rename_columns({'summary.size': 'size'})
+
+        train, dev, test = DataLoader.new(
+            (ds['train'], ds['validation'], ds['test']), batch_size=batch_size,
+            collate_fn=cls.get_collate_fn(device=get_device()),
+            drop_last=False, section_size=4096,
+        )
+
+        return (train, dev, test), plm
