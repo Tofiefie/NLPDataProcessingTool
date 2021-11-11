@@ -104,3 +104,17 @@ class Glue(DataStore, metaclass=ABCMeta):
             (ds['train'], ds['validation'], ds['test']), batch_size=batch_size,
             collate_fn=cls.get_collate_fn(device=get_device()),
             drop_last=False, section_size=4096,
+        )
+
+        return (train, dev, test), plm
+
+
+class MNLIm(Glue):
+    subset = 'mnli'
+
+    validation_split = 'validation_matched'
+    test_split = 'test_matched'
+
+    key1 = 'premise'
+    key2 = 'hypothesis'
+    label = 'label'
