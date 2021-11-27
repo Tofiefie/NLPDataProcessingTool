@@ -122,3 +122,85 @@ class Wmt(DataStore):
 
     @classmethod
     def new(cls, batch_size: int = 4096,
+            src_plm: Union[Type[RobertaBase], Type[MBartLarge]] = RobertaBase,
+            tgt_plm: Union[Type[RobertaBase], Type[MBartLarge]] = RobertaBase):
+        src_plm = src_plm(lang=cls.src_lang)
+        tgt_plm = tgt_plm(lang=cls.tgt_lang)
+
+        ds = cls.load(src_plm=src_plm, tgt_plm=tgt_plm)
+        ds = ds.rename_columns({f'{cls.tgt_lang}.size': 'size'})
+
+        logger.info(f'ds => {ds}')
+
+        train, dev, test = DataLoader.new(
+            (ds['train'], ds['validation'], ds['test']), batch_size=batch_size,
+            collate_fn=cls.get_collate_fn(device=get_device()),
+            drop_last=False, section_size=4096,
+        )
+
+        return (train, dev, test), (src_plm, tgt_plm)
+
+
+class Wmt14DeEn(Wmt):
+    name = 'wmt14'
+    subset = 'de-en'
+    src_lang = 'de'
+    tgt_lang = 'en'
+
+    ratio = 1.5
+    min_length = 1
+    max_length = 250
+
+
+class Wmt14EnDe(Wmt14DeEn):
+    src_lang = Wmt14DeEn.tgt_lang
+    tgt_lang = Wmt14DeEn.src_lang
+
+
+class Wmt14FrEn(Wmt):
+    name = 'wmt14'
+    subset = 'fr-en'
+    src_lang = 'fr'
+    tgt_lang = 'en'
+
+    ratio = 1.5
+    min_length = 1
+    max_length = 250
+
+
+class Wmt14EnFr(Wmt14FrEn):
+    src_lang = Wmt14FrEn.tgt_lang
+    tgt_lang = Wmt14FrEn.src_lang
+
+
+class Wmt16RoEn(Wmt):
+    name = 'wmt16'
+    subset = 'ro-en'
+    src_lang = 'ro'
+    tgt_lang = 'en'
+
+    ratio = 1.5
+    min_length = 1
+    max_length = 250
+
+
+class Wmt16EnRo(Wmt16RoEn):
+    src_lang = Wmt16RoEn.tgt_lang
+    tgt_lang = Wmt16RoEn.src_lang
+
+
+wmt14deen = NewType('wmt14deen', Wmt14DeEn.new)
+wmt14ende = NewType('wmt14ende', Wmt14EnDe.new)
+wmt14fren = NewType('wmt14fren', Wmt14FrEn.new)
+wmt14enfr = NewType('wmt14enfr', Wmt14EnFr.new)
+wmt16roen = NewType('wmt16roen', Wmt16RoEn.new)
+wmt16enro = NewType('wmt16enro', Wmt16EnRo.new)
+
+Datasets = Union[
+    Type[wmt14deen],
+    Type[wmt14ende],
+    Type[wmt14fren],
+    Type[wmt14enfr],
+    Type[wmt16roen],
+    Type[wmt16enro],
+]
