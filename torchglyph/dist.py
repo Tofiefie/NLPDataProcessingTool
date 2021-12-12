@@ -14,4 +14,8 @@ from torch import distributed
 logger = getLogger(__name__)
 
 
-def ge
+def get_port() -> int:  # TODO: resolve this
+    sock = socket()
+    sock.bind(('', 0))
+
+    _, port =
