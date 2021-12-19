@@ -27,4 +27,11 @@ def init_process(*, rank: int, port: int) -> None:
     os.environ['MASTER_PORT'] = f'{port}'
     distributed.init_process_group(
         backend='nccl', init_method=f'env://',
-        world_size=torch.cuda.devic
+        world_size=torch.cuda.device_count(), rank=rank,
+    )
+
+    torch.cuda.set_device(rank)
+    torch.cuda.synchronize(rank)
+
+
+de
