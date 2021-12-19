@@ -18,4 +18,9 @@ def get_port() -> int:  # TODO: resolve this
     sock = socket()
     sock.bind(('', 0))
 
-    _, port =
+    _, port = sock.getsockname()
+    return port
+
+
+def init_process(*, rank: int, port: int) -> None:
+   
