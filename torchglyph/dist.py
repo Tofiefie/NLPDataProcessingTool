@@ -23,4 +23,6 @@ def get_port() -> int:  # TODO: resolve this
 
 
 def init_process(*, rank: int, port: int) -> None:
-   
+    os.environ['MASTER_ADDR'] = 'localhost'
+    os.environ['MASTER_PORT'] = f'{port}'
+    distribute
