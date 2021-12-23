@@ -34,4 +34,8 @@ def init_process(*, rank: int, port: int) -> None:
     torch.cuda.synchronize(rank)
 
 
-de
+def init_seed(seed: int = 42, *, rank: int) -> None:
+    seed = seed + rank
+
+    random.seed(seed)
+    np.random.seed(seed)
