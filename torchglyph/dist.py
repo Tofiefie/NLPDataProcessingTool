@@ -39,3 +39,7 @@ def init_seed(seed: int = 42, *, rank: int) -> None:
 
     random.seed(seed)
     np.random.seed(seed)
+    torch.manual_seed(seed)
+
+    if torch.cuda.is_available():
+        torch.cuda.manual_see
