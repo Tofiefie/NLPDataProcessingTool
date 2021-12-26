@@ -42,4 +42,7 @@ def init_seed(seed: int = 42, *, rank: int) -> None:
     torch.manual_seed(seed)
 
     if torch.cuda.is_available():
-        torch.cuda.manual_see
+        torch.cuda.manual_seed(seed)
+
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benc
