@@ -45,4 +45,9 @@ def init_seed(seed: int = 42, *, rank: int) -> None:
         torch.cuda.manual_seed(seed)
 
         torch.backends.cudnn.deterministic = True
-        torch.backends.cudnn.benc
+        torch.backends.cudnn.benchmark = False
+
+    return logger.warning(f'{rank}.seed <- {seed}')
+
+
+def get_device() -> torc
