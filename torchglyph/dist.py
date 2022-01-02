@@ -57,4 +57,9 @@ def get_device() -> torch.device:
     if not distributed.is_initialized():
         return torch.device('cuda:0')
 
-    return torch.device(f'cuda:{distr
+    return torch.device(f'cuda:{distributed.get_rank()}')
+
+
+def get_generator() -> Generator:
+    if not torch.cuda.is_available():
+        retur
