@@ -50,4 +50,8 @@ def init_seed(seed: int = 42, *, rank: int) -> None:
     return logger.warning(f'{rank}.seed <- {seed}')
 
 
-def get_device() -> torc
+def get_device() -> torch.device:
+    if not torch.cuda.is_available():
+        return torch.device('cpu')
+
+    if not distrib
