@@ -54,4 +54,7 @@ def get_device() -> torch.device:
     if not torch.cuda.is_available():
         return torch.device('cpu')
 
-    if not distrib
+    if not distributed.is_initialized():
+        return torch.device('cuda:0')
+
+    return torch.device(f'cuda:{distr
