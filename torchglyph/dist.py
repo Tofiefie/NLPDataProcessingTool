@@ -71,4 +71,7 @@ def get_generator() -> Generator:
 
 
 def get_rank() -> int:
- 
+    if not distributed.is_initialized():
+        return 0
+
+    return distributed.get
