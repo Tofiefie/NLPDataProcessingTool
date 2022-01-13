@@ -79,4 +79,10 @@ def get_rank() -> int:
 
 def get_world_size() -> int:
     if not distributed.is_initialized():
-        re
+        return 1
+
+    return distributed.get_world_size()
+
+
+def is_master() -> bool:
+    if not distributed.is_
