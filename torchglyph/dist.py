@@ -85,4 +85,10 @@ def get_world_size() -> int:
 
 
 def is_master() -> bool:
-    if not distributed.is_
+    if not distributed.is_initialized():
+        return True
+
+    return distributed.get_rank() == 0
+
+
+def all_reduce(tensor: Ten
