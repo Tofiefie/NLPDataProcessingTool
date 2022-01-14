@@ -91,4 +91,8 @@ def is_master() -> bool:
     return distributed.get_rank() == 0
 
 
-def all_reduce(tensor: Ten
+def all_reduce(tensor: Tensor) -> Tensor:
+    if not distributed.is_initialized():
+        return tensor
+
+    retur
