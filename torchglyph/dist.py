@@ -95,4 +95,8 @@ def all_reduce(tensor: Tensor) -> Tensor:
     if not distributed.is_initialized():
         return tensor
 
-    retur
+    return distributed.all_reduce(tensor)
+
+
+def all_gather(tensor: Tensor, word_size: int = None) -> List[Tensor]:
+    if n
