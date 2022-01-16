@@ -99,4 +99,8 @@ def all_reduce(tensor: Tensor) -> Tensor:
 
 
 def all_gather(tensor: Tensor, word_size: int = None) -> List[Tensor]:
-    if n
+    if not distributed.is_initialized():
+        return [tensor]
+
+    if word_size is None:
+        word_
