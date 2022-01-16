@@ -106,4 +106,8 @@ def all_gather(tensor: Tensor, word_size: int = None) -> List[Tensor]:
         word_size = distributed.get_world_size()
 
     gather_list = [None for _ in range(word_size)]
-    distributed.
+    distributed.all_gather(gather_list, tensor)
+    return gather_list
+
+
+def all_gather_object(obj: Any, wor
