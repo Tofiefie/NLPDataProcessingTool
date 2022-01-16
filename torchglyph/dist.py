@@ -103,4 +103,7 @@ def all_gather(tensor: Tensor, word_size: int = None) -> List[Tensor]:
         return [tensor]
 
     if word_size is None:
-        word_
+        word_size = distributed.get_world_size()
+
+    gather_list = [None for _ in range(word_size)]
+    distributed.
