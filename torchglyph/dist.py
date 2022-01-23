@@ -117,4 +117,6 @@ def all_gather_object(obj: Any, word_size: int = None) -> List[Any]:
     if word_size is None:
         word_size = distributed.get_world_size()
 
-    gather_list = [N
+    gather_list = [None for _ in range(word_size)]
+    distributed.all_gather_object(gather_list, obj)
+    return g
