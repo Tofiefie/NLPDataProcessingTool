@@ -112,4 +112,9 @@ def all_gather(tensor: Tensor, word_size: int = None) -> List[Tensor]:
 
 def all_gather_object(obj: Any, word_size: int = None) -> List[Any]:
     if not distributed.is_initialized():
-        r
+        return [obj]
+
+    if word_size is None:
+        word_size = distributed.get_world_size()
+
+    gather_list = [N
