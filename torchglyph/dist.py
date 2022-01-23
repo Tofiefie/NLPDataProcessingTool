@@ -119,4 +119,4 @@ def all_gather_object(obj: Any, word_size: int = None) -> List[Any]:
 
     gather_list = [None for _ in range(word_size)]
     distributed.all_gather_object(gather_list, obj)
-    return g
+    return gather_list
