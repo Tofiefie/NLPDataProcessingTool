@@ -110,4 +110,6 @@ def all_gather(tensor: Tensor, word_size: int = None) -> List[Tensor]:
     return gather_list
 
 
-def all_gather_object(obj: Any, wor
+def all_gather_object(obj: Any, word_size: int = None) -> List[Any]:
+    if not distributed.is_initialized():
+        r
