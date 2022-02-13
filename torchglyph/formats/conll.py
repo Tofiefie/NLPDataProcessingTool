@@ -6,4 +6,8 @@ from typing import Tuple
 from typing import Type
 from typing import get_type_hints
 
-from torchglyph.formats.primitive im
+from torchglyph.formats.primitive import dumps_type
+from torchglyph.formats.primitive import loads_type
+
+Token = Tuple[Any, ...]
+Sentence = Tuple[Tuple
