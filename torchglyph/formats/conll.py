@@ -10,4 +10,8 @@ from torchglyph.formats.primitive import dumps_type
 from torchglyph.formats.primitive import loads_type
 
 Token = Tuple[Any, ...]
-Sentence = Tuple[Tuple
+Sentence = Tuple[Tuple[Any, ...], ...]
+
+
+def loads_token(string: str, *, config: Type[NamedTuple], sep: str = '\t') -> Token:
+ 
