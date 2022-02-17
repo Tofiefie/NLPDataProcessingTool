@@ -14,4 +14,6 @@ Sentence = Tuple[Tuple[Any, ...], ...]
 
 
 def loads_token(string: str, *, config: Type[NamedTuple], sep: str = '\t') -> Token:
- 
+    return tuple(
+        loads_type(s, tp=tp)
+        for s, (name, tp) in zip(string.
