@@ -16,4 +16,5 @@ Sentence = Tuple[Tuple[Any, ...], ...]
 def loads_token(string: str, *, config: Type[NamedTuple], sep: str = '\t') -> Token:
     return tuple(
         loads_type(s, tp=tp)
-        for s, (name, tp) in zip(string.
+        for s, (name, tp) in zip(string.strip().split(sep=sep), get_type_hints(config).items())
+        if not name.endswith('
