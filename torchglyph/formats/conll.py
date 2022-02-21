@@ -17,4 +17,8 @@ def loads_token(string: str, *, config: Type[NamedTuple], sep: str = '\t') -> To
     return tuple(
         loads_type(s, tp=tp)
         for s, (name, tp) in zip(string.strip().split(sep=sep), get_type_hints(config).items())
-        if not name.endswith('
+        if not name.endswith('_')
+    )
+
+
+def iter_sentence(fp: IO, *, config: Type[NamedTuple], sep: st
