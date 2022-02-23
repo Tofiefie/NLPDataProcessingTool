@@ -24,4 +24,7 @@ def loads_token(string: str, *, config: Type[NamedTuple], sep: str = '\t') -> To
 def iter_sentence(fp: IO, *, config: Type[NamedTuple], sep: str = '\t', blank: str = '') -> Iterable[Sentence]:
     sentence = []
 
-    for
+    for string in fp:
+        string = string.strip()
+        if string != blank:
+            sente
