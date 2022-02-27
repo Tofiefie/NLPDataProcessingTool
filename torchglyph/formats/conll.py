@@ -27,4 +27,6 @@ def iter_sentence(fp: IO, *, config: Type[NamedTuple], sep: str = '\t', blank: s
     for string in fp:
         string = string.strip()
         if string != blank:
-            sente
+            sentence.append(loads_token(string, config=config, sep=sep))
+        elif len(sentence) != 0:
+  
