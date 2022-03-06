@@ -33,4 +33,7 @@ def iter_sentence(fp: IO, *, config: Type[NamedTuple], sep: str = '\t', blank: s
             sentence = []
 
     if len(sentence) != 0:
-    
+        yield tuple(zip(*sentence))
+
+
+def dumps_token(token: Token, *, config: Type[NamedTuple], sep: str = '\t') -> str:
