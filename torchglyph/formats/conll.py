@@ -37,3 +37,6 @@ def iter_sentence(fp: IO, *, config: Type[NamedTuple], sep: str = '\t', blank: s
 
 
 def dumps_token(token: Token, *, config: Type[NamedTuple], sep: str = '\t') -> str:
+    return sep.join([
+        dumps_type(data)
+        for data, (name, tp) in zip(token, get_type_hints(con
