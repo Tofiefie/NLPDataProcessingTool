@@ -46,4 +46,5 @@ def dumps_token(token: Token, *, config: Type[NamedTuple], sep: str = '\t') -> s
 
 def dump_sentence(sentence: Sentence, fp: IO, *, config: Type[NamedTuple], sep: str = '\t', blank: str = '') -> None:
     for token in sentence:
-        pri
+        print(dumps_token(token, config=config, sep=sep), file=fp)
+    print(blank, file=fp)
