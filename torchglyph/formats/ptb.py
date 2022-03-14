@@ -63,3 +63,28 @@ def factorize(tree: Tree, i: int = 0):
 
     if len(tree) == 1 and not isinstance(tree[0], Tree):
         return (i + 1 if label is not None else i), []
+
+    j, spans = i, []
+    for child in tree:
+        j, s = factorize(child, j)
+        spans += s
+
+    if label is not None and j > i:
+        spans = [(i, j, label)] + spans
+
+    return j, spans
+
+
+def iter_ptb(path: Path, *, do_binarize: bool, do_factorize: bool):
+    corpus_reader = BracketParseCorpusReader(str(path.resolve().parent), [path.name])
+
+    for tree in corpus_reader.parsed_sents():
+        words = ptb_unescape(tree.leaves())
+
+        tree = tree[0]
+        if do_binarize:
+            tree = binarize(tree)
+        if do_factorize:
+            _, tree = factorize(tree)
+
+        yield words, tree
