@@ -15,4 +15,9 @@ def load_meta(fp: IO, *, sep: str = ' ') -> Tuple[int, int]:
 
 
 def loads_vector(string: str, *, sep: str = ' '):
-    token, *values = string.rstrip().split(sep=
+    token, *values = string.rstrip().split(sep=sep)
+    return str(token), tuple(float(value) for value in values)
+
+
+def load_vector(fp: IO, *, sep: str = ' '):
+ 
