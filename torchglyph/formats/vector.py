@@ -20,4 +20,7 @@ def loads_vector(string: str, *, sep: str = ' '):
 
 
 def load_vector(fp: IO, *, sep: str = ' '):
- 
+    return loads_vector(fp.readline(), sep=sep)
+
+
+def load_word2vec(fp: IO, *, sep: str = ' '):
