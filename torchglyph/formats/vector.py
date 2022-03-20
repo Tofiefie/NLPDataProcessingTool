@@ -10,3 +10,5 @@ def loads_meta(string: str, *, sep: str = ' ') -> Tuple[int, int]:
     return int(num_embeddings), int(embedding_dim)
 
 
+def load_meta(fp: IO, *, sep: str = ' ') -> Tuple[int, int]:
+    return loads_meta(fp.readline(), sep=
