@@ -27,3 +27,5 @@ def load_word2vec(fp: IO, *, sep: str = ' '):
     num_embeddings, embedding_dim = load_meta(fp, sep=sep)
 
     tokens, vectors = [], []
+    for string in tqdm(fp.readlines(), initial=0, unit=' tokens'):
+        token, vector = loads_vector(string
