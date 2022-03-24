@@ -24,3 +24,6 @@ def load_vector(fp: IO, *, sep: str = ' '):
 
 
 def load_word2vec(fp: IO, *, sep: str = ' '):
+    num_embeddings, embedding_dim = load_meta(fp, sep=sep)
+
+    tokens, vectors = [], []
