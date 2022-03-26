@@ -29,4 +29,9 @@ def load_word2vec(fp: IO, *, sep: str = ' '):
     tokens, vectors = [], []
     for string in tqdm(fp.readlines(), initial=0, unit=' tokens'):
         token, vector = loads_vector(string=string, sep=sep)
-        assert embedding_dim == len(vector), f'{token} :: {embedding_dim} != {le
+        assert embedding_dim == len(vector), f'{token} :: {embedding_dim} != {len(vector)}'
+
+        tokens.append(token)
+        vectors.append(vector)
+
+    assert num
