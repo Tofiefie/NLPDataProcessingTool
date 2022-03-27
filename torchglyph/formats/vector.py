@@ -34,4 +34,5 @@ def load_word2vec(fp: IO, *, sep: str = ' '):
         tokens.append(token)
         vectors.append(vector)
 
-    assert num
+    assert num_embeddings == len(tokens), f'{num_embeddings} != {len(tokens)}'
+    return tokens, torc
