@@ -38,4 +38,6 @@ def load_word2vec(fp: IO, *, sep: str = ' '):
     return tokens, torch.tensor(vectors, dtype=torch.float32, device=torch.device('cpu'))
 
 
-def load_glove(fp: 
+def load_glove(fp: IO, *, sep: str = ' '):
+    token, vector = load_vector(fp, sep=sep)
+    embedding_dim = len(vec
