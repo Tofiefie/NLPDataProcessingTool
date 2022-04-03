@@ -35,4 +35,7 @@ def load_word2vec(fp: IO, *, sep: str = ' '):
         vectors.append(vector)
 
     assert num_embeddings == len(tokens), f'{num_embeddings} != {len(tokens)}'
-    return tokens, torc
+    return tokens, torch.tensor(vectors, dtype=torch.float32, device=torch.device('cpu'))
+
+
+def load_glove(fp: 
