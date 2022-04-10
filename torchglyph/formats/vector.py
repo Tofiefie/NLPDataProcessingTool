@@ -43,4 +43,6 @@ def load_glove(fp: IO, *, sep: str = ' '):
     embedding_dim = len(vector)
 
     tokens, vectors = [token], [vector]
-    for string in tqdm(fp.readlines(), initial=1, 
+    for string in tqdm(fp.readlines(), initial=1, unit=' tokens'):
+        token, vector = loads_vector(string, sep=sep)
+        assert embedding_dim == len(vect
