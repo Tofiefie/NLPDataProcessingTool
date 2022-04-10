@@ -40,4 +40,7 @@ def load_word2vec(fp: IO, *, sep: str = ' '):
 
 def load_glove(fp: IO, *, sep: str = ' '):
     token, vector = load_vector(fp, sep=sep)
-    embedding_dim = len(vec
+    embedding_dim = len(vector)
+
+    tokens, vectors = [token], [vector]
+    for string in tqdm(fp.readlines(), initial=1, 
