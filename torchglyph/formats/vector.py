@@ -47,4 +47,7 @@ def load_glove(fp: IO, *, sep: str = ' '):
         token, vector = loads_vector(string, sep=sep)
         assert embedding_dim == len(vector), f'{token} :: {embedding_dim} != {len(vector)}'
 
-        tokens.append
+        tokens.append(token)
+        vectors.append(vector)
+
+    return tokens, torch.tensor(vectors, dtype=torch.float32
