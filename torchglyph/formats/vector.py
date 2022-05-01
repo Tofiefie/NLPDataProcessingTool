@@ -50,4 +50,4 @@ def load_glove(fp: IO, *, sep: str = ' '):
         tokens.append(token)
         vectors.append(vector)
 
-    return tokens, torch.tensor(vectors, dtype=torch.float32
+    return tokens, torch.tensor(vectors, dtype=torch.float32, device=torch.device('cpu'))
