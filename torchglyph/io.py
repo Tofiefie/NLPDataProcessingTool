@@ -13,4 +13,6 @@ from typing import Tuple
 import torch
 from datasets.config import DATASETDICT_JSON_FILENAME
 from datasets.config import DATASET_INFO_FILENAME
-from datasets.download
+from datasets.download import DownloadConfig
+from datasets.download import DownloadManager
+from datasets.fingerprint
