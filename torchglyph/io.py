@@ -20,4 +20,9 @@ from filelock import FileLock
 from torch import nn
 
 from torchglyph import DEBUG
-from torch
+from torchglyph import data_dir
+
+logger = logging.getLogger(__name__)
+
+ARGS_JSON = 'args.json'
+SOTA_JSON = 'sot
