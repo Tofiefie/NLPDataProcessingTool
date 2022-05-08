@@ -25,4 +25,8 @@ from torchglyph import data_dir
 logger = logging.getLogger(__name__)
 
 ARGS_JSON = 'args.json'
-SOTA_JSON = 'sot
+SOTA_JSON = 'sota.json'
+CHECKPOINT_PT = 'checkpoint.pt'
+
+
+def download_and_extract(url: str, name: str, root: Path = data_dir)
