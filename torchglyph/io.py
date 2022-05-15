@@ -38,4 +38,10 @@ def download_and_extract(url: str, name: str, root: Path = data_dir) -> Path:
         ),
     )
 
-  
+    return Path(manager.download_and_extract(url))
+
+
+def hf_hash(**kwargs) -> str:
+    hasher = Hasher()
+
+    for 
