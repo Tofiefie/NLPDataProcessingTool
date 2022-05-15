@@ -29,4 +29,7 @@ SOTA_JSON = 'sota.json'
 CHECKPOINT_PT = 'checkpoint.pt'
 
 
-def download_and_extract(url: str, name: str, root: Path = data_dir)
+def download_and_extract(url: str, name: str, root: Path = data_dir) -> Path:
+    manager = DownloadManager(
+        dataset_name=name,
+        download_config=DownloadCo
