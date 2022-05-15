@@ -32,4 +32,10 @@ CHECKPOINT_PT = 'checkpoint.pt'
 def download_and_extract(url: str, name: str, root: Path = data_dir) -> Path:
     manager = DownloadManager(
         dataset_name=name,
-        download_config=DownloadCo
+        download_config=DownloadConfig(
+            cache_dir=root / name,
+            download_desc=f'Downloading {url}',
+        ),
+    )
+
+  
