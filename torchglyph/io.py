@@ -44,4 +44,8 @@ def download_and_extract(url: str, name: str, root: Path = data_dir) -> Path:
 def hf_hash(**kwargs) -> str:
     hasher = Hasher()
 
-    for 
+    for key, value in sorted(kwargs.items()):
+        hasher.update(key)
+        hasher.update(value)
+
+  
