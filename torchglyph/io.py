@@ -48,4 +48,8 @@ def hf_hash(**kwargs) -> str:
         hasher.update(key)
         hasher.update(value)
 
-  
+    return hasher.hexdigest()
+
+
+def cache_file(path: Path, **kwargs) -> Path:
+    cache = p
