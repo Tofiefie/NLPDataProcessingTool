@@ -52,4 +52,6 @@ def hf_hash(**kwargs) -> str:
 
 
 def cache_file(path: Path, **kwargs) -> Path:
-    cache = p
+    cache = path.resolve()
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    return cache.paren
