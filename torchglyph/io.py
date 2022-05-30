@@ -60,4 +60,9 @@ def cache_file(path: Path, **kwargs) -> Path:
 def cache_folder(path: Path, **kwargs) -> Path:
     cache = path.resolve()
     cache.mkdir(parents=True, exist_ok=True)
-    return cache / hf_hash(__torchglyph=DEBUG, *
+    return cache / hf_hash(__torchglyph=DEBUG, **kwargs)
+
+
+def all_exits(path: Path, *names: str) -> bool:
+    for name in names:
+        if not (
