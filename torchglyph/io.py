@@ -57,4 +57,7 @@ def cache_file(path: Path, **kwargs) -> Path:
     return cache.parent / f'{cache.name}.{hf_hash(__torchglyph=DEBUG, **kwargs)}'
 
 
-def cache_folder(path: Path, **kwargs) ->
+def cache_folder(path: Path, **kwargs) -> Path:
+    cache = path.resolve()
+    cache.mkdir(parents=True, exist_ok=True)
+    return cache / hf_hash(__torchglyph=DEBUG, *
