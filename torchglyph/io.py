@@ -71,4 +71,9 @@ def all_exits(path: Path, *names: str) -> bool:
     return True
 
 
-def is_dataset_folder(path: Path) -
+def is_dataset_folder(path: Path) -> bool:
+    path = path / DATASET_INFO_FILENAME
+    return path.is_file() and path.exists()
+
+
+def is_
