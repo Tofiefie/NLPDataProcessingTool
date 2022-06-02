@@ -65,4 +65,10 @@ def cache_folder(path: Path, **kwargs) -> Path:
 
 def all_exits(path: Path, *names: str) -> bool:
     for name in names:
-        if not (
+        if not (path / name).exists():
+            return False
+
+    return True
+
+
+def is_dataset_folder(path: Path) -
