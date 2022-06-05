@@ -76,4 +76,6 @@ def is_dataset_folder(path: Path) -> bool:
     return path.is_file() and path.exists()
 
 
-def is_
+def is_dataset_dict_folder(path: Path) -> bool:
+    path = path / DATASETDICT_JSON_FILENAME
+    return path.is_
