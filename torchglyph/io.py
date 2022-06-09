@@ -78,4 +78,9 @@ def is_dataset_folder(path: Path) -> bool:
 
 def is_dataset_dict_folder(path: Path) -> bool:
     path = path / DATASETDICT_JSON_FILENAME
-    return path.is_
+    return path.is_file() and path.exists()
+
+
+@contextmanager
+def lock_folder(path: Path):
+    path.mkdir(parents=Tr
