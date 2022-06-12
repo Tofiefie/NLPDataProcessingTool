@@ -88,4 +88,6 @@ def lock_folder(path: Path):
         yield
 
 
-def load_
+def load_json(path: Path) -> Any:
+    with path.open(mode='r', encoding='utf-8') as fp:
+        r
