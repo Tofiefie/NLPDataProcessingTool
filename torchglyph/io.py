@@ -83,4 +83,9 @@ def is_dataset_dict_folder(path: Path) -> bool:
 
 @contextmanager
 def lock_folder(path: Path):
-    path.mkdir(parents=Tr
+    path.mkdir(parents=True, exist_ok=True)
+    with FileLock(str(path.resolve() / '.lock')):
+        yield
+
+
+def load_
