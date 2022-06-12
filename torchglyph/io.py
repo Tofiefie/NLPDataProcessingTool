@@ -90,4 +90,8 @@ def lock_folder(path: Path):
 
 def load_json(path: Path) -> Any:
     with path.open(mode='r', encoding='utf-8') as fp:
-        r
+        return json.load(fp=fp)
+
+
+def load_args(out_dir: Path, name: str = ARGS_JSON) -> Any:
+    return load_js
