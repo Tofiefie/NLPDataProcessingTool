@@ -101,4 +101,9 @@ def load_sota(out_dir: Path, name: str = SOTA_JSON) -> Any:
     return load_json(path=out_dir / name)
 
 
-def save_json(path: Path, **
+def save_json(path: Path, **kwargs) -> None:
+    data = {}
+    if not path.exists():
+        logger.info(f'saving to {path}')
+    else:
+  
