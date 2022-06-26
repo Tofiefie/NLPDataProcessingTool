@@ -97,4 +97,8 @@ def load_args(out_dir: Path, name: str = ARGS_JSON) -> Any:
     return load_json(path=out_dir / name)
 
 
-def load_sota(out_dir: Path, name: str = SOTA_JSON) -> 
+def load_sota(out_dir: Path, name: str = SOTA_JSON) -> Any:
+    return load_json(path=out_dir / name)
+
+
+def save_json(path: Path, **
