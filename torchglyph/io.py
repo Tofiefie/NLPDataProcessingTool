@@ -106,4 +106,7 @@ def save_json(path: Path, **kwargs) -> None:
     if not path.exists():
         logger.info(f'saving to {path}')
     else:
+        with path.open(mode='r', encoding='utf-8') as fp:
+            data = json.load(fp=fp)
+
   
