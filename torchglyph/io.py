@@ -109,4 +109,5 @@ def save_json(path: Path, **kwargs) -> None:
         with path.open(mode='r', encoding='utf-8') as fp:
             data = json.load(fp=fp)
 
-  
+    with path.open(mode='w', encoding='utf-8') as fp:
+        json.dump({**data, **kwargs}, fp=fp, 
