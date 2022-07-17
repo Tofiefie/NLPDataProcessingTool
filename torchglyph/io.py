@@ -113,4 +113,8 @@ def save_json(path: Path, **kwargs) -> None:
         json.dump({**data, **kwargs}, fp=fp, indent=2, ensure_ascii=False)
 
 
-def save_args(out_dir: Path, name: str = ARGS_JSON, **kwar
+def save_args(out_dir: Path, name: str = ARGS_JSON, **kwargs) -> None:
+    return save_json(path=out_dir / name, **kwargs)
+
+
+def save_sot
