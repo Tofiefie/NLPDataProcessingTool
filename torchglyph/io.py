@@ -117,4 +117,7 @@ def save_args(out_dir: Path, name: str = ARGS_JSON, **kwargs) -> None:
     return save_json(path=out_dir / name, **kwargs)
 
 
-def save_sot
+def save_sota(out_dir: Path, name: str = SOTA_JSON, **kwargs) -> None:
+    return save_json(path=out_dir / name, **kwargs)
+
+
