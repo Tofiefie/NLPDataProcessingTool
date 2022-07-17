@@ -110,4 +110,7 @@ def save_json(path: Path, **kwargs) -> None:
             data = json.load(fp=fp)
 
     with path.open(mode='w', encoding='utf-8') as fp:
-        json.dump({**data, **kwargs}, fp=fp, 
+        json.dump({**data, **kwargs}, fp=fp, indent=2, ensure_ascii=False)
+
+
+def save_args(out_dir: Path, name: str = ARGS_JSON, **kwar
