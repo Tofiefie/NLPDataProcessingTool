@@ -121,4 +121,5 @@ def save_sota(out_dir: Path, name: str = SOTA_JSON, **kwargs) -> None:
     return save_json(path=out_dir / name, **kwargs)
 
 
-def load_checkpoint(name: str = CHECKPOINT_PT, strict: bool = True, *, out_dir: Path, **kw
+def load_checkpoint(name: str = CHECKPOINT_PT, strict: bool = True, *, out_dir: Path, **kwargs) -> None:
+    state_dict = torch.load(out_dir / name, map_location=torch.device
