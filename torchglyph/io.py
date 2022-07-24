@@ -122,4 +122,7 @@ def save_sota(out_dir: Path, name: str = SOTA_JSON, **kwargs) -> None:
 
 
 def load_checkpoint(name: str = CHECKPOINT_PT, strict: bool = True, *, out_dir: Path, **kwargs) -> None:
-    state_dict = torch.load(out_dir / name, map_location=torch.device
+    state_dict = torch.load(out_dir / name, map_location=torch.device('cpu'))
+
+    for name, module in kwargs.items():  # type: str, nn.Module
+        logger.info(f'loading {name}.checkpoint from {
