@@ -126,4 +126,8 @@ def load_checkpoint(name: str = CHECKPOINT_PT, strict: bool = True, *, out_dir: 
 
     for name, module in kwargs.items():  # type: str, nn.Module
         logger.info(f'loading {name}.checkpoint from {out_dir / name}')
-        missing_keys, unexpected_keys = module.load_state_dict(state_dict=state_dict[na
+        missing_keys, unexpected_keys = module.load_state_dict(state_dict=state_dict[name], strict=strict)
+
+        if not strict:
+            for missing_key in missing_keys:
+                
