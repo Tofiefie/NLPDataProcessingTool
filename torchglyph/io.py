@@ -130,4 +130,6 @@ def load_checkpoint(name: str = CHECKPOINT_PT, strict: bool = True, *, out_dir: 
 
         if not strict:
             for missing_key in missing_keys:
-                
+                logger.warning(f'{name}.{missing_key} is missing')
+
+            for unexpected_key in une
