@@ -133,4 +133,8 @@ def load_checkpoint(name: str = CHECKPOINT_PT, strict: bool = True, *, out_dir: 
                 logger.warning(f'{name}.{missing_key} is missing')
 
             for unexpected_key in unexpected_keys:
-                logger.warning(f'{name}.{unexpected_key} is unexp
+                logger.warning(f'{name}.{unexpected_key} is unexpected')
+
+
+def save_checkpoint(name: str = CHECKPOINT_PT, *, out_dir: Path, **kwargs) -> None:
+    logge
