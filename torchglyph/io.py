@@ -137,4 +137,5 @@ def load_checkpoint(name: str = CHECKPOINT_PT, strict: bool = True, *, out_dir: 
 
 
 def save_checkpoint(name: str = CHECKPOINT_PT, *, out_dir: Path, **kwargs) -> None:
-    logge
+    logger.info(f'saving checkpoint ({", ".join(kwargs.keys())}) to {out_dir / name}')
+    return t
