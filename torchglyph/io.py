@@ -145,4 +145,5 @@ def extract(path: Path) -> Path:
     logger.info(f'extracting files from {path}')
 
     if path.name.endswith('.zip'):
-     
+        with zipfile.ZipFile(path, 'r') as fp:
+            fp.extractall(path=path
