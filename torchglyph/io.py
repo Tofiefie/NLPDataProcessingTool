@@ -141,4 +141,8 @@ def save_checkpoint(name: str = CHECKPOINT_PT, *, out_dir: Path, **kwargs) -> No
     return torch.save({name: module.state_dict() for name, module in kwargs.items()}, f=out_dir / name)
 
 
-def extract(path: Path
+def extract(path: Path) -> Path:
+    logger.info(f'extracting files from {path}')
+
+    if path.name.endswith('.zip'):
+     
