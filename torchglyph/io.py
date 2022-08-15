@@ -146,4 +146,8 @@ def extract(path: Path) -> Path:
 
     if path.name.endswith('.zip'):
         with zipfile.ZipFile(path, 'r') as fp:
-            fp.extractall(path=path
+            fp.extractall(path=path.parent)
+
+    elif path.name.endswith('.tar'):
+        with tarfile.open(path, 'r') as fp:
+    
