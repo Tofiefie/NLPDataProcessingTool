@@ -152,4 +152,8 @@ def extract(path: Path) -> Path:
         with tarfile.open(path, 'r') as fp:
             fp.extractall(path=path.parent)
 
-    elif path.name.endswith('.tar.gz') or path.name.endswith('.
+    elif path.name.endswith('.tar.gz') or path.name.endswith('.tgz'):
+        with tarfile.open(path, 'r:gz') as fp:
+            fp.extractall(path=path.parent)
+
+    
