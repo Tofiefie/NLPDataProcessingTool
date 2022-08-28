@@ -160,4 +160,6 @@ def extract(path: Path) -> Path:
         with tarfile.open(path, 'r:bz2') as fp:
             fp.extractall(path=path.parent)
 
-    elif path.name.endswi
+    elif path.name.endswith('.gz'):
+        with gzip.open(path, mode='rb') as fs:
+            with path.with_suffix('').open(mod
