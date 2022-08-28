@@ -170,3 +170,9 @@ def extract(path: Path) -> Path:
 
 class DownloadMixin(object):
     name: str
+
+    @classmethod
+    def urls(cls, **kwargs) -> List[Tuple[str, ...]]:
+        raise NotImplementedError
+
+  
