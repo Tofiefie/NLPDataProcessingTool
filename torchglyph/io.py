@@ -162,4 +162,11 @@ def extract(path: Path) -> Path:
 
     elif path.name.endswith('.gz'):
         with gzip.open(path, mode='rb') as fs:
-            with path.with_suffix('').open(mod
+            with path.with_suffix('').open(mode='wb') as fd:
+                shutil.copyfileobj(fs, fd)
+
+    return path
+
+
+class DownloadMixin(object):
+    name: str
