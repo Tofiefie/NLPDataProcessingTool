@@ -177,4 +177,7 @@ class DownloadMixin(object):
 
     @classmethod
     def paths(cls, root: Path = data_dir, **kwargs) -> List[Path]:
-        
+        dataset_name = getattr(cls, 'name', cls.__name__).lower()
+
+        dm = DownloadManager(
+            
