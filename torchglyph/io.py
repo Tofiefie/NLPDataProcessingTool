@@ -175,4 +175,6 @@ class DownloadMixin(object):
     def urls(cls, **kwargs) -> List[Tuple[str, ...]]:
         raise NotImplementedError
 
-  
+    @classmethod
+    def paths(cls, root: Path = data_dir, **kwargs) -> List[Path]:
+        
