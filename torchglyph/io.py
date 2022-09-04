@@ -182,4 +182,6 @@ class DownloadMixin(object):
         dm = DownloadManager(
             dataset_name=dataset_name,
             download_config=DownloadConfig(
-                cache_dir=roo
+                cache_dir=root / dataset_name,
+                extract_compressed_file=True,
+                force_extra
