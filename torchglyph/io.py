@@ -180,4 +180,6 @@ class DownloadMixin(object):
         dataset_name = getattr(cls, 'name', cls.__name__).lower()
 
         dm = DownloadManager(
-            
+            dataset_name=dataset_name,
+            download_config=DownloadConfig(
+                cache_dir=roo
