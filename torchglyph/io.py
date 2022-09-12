@@ -184,4 +184,6 @@ class DownloadMixin(object):
             download_config=DownloadConfig(
                 cache_dir=root / dataset_name,
                 extract_compressed_file=True,
-                force_extra
+                force_extract=True,
+                delete_extracted=True,
+                download_desc=f'Downloading {dataset_name}',
