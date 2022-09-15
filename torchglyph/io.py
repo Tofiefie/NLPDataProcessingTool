@@ -187,3 +187,8 @@ class DownloadMixin(object):
                 force_extract=True,
                 delete_extracted=True,
                 download_desc=f'Downloading {dataset_name}',
+            ),
+        )
+
+        out = []
+        for url, *names in cls.urls(**kwargs):
