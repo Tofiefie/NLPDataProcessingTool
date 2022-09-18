@@ -192,3 +192,7 @@ class DownloadMixin(object):
 
         out = []
         for url, *names in cls.urls(**kwargs):
+            archive = Path(dm.download_and_extract(url))
+
+            if len(names) == 0:
+                out.
