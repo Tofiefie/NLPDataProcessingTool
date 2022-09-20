@@ -195,4 +195,7 @@ class DownloadMixin(object):
             archive = Path(dm.download_and_extract(url))
 
             if len(names) == 0:
-                out.
+                out.append(archive)
+            else:
+                for name in names:
+                    out.append(archive / name)
