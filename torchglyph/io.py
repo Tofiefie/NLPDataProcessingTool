@@ -199,3 +199,5 @@ class DownloadMixin(object):
             else:
                 for name in names:
                     out.append(archive / name)
+
+        return out
