@@ -9,4 +9,9 @@ from torchglyph import DEBUG
 
 logger = getLogger(__name__)
 
-LOG_TXT 
+LOG_TXT = 'log.txt'
+
+
+def clear_root(*, level: int) -> None:
+    for handler in logging.root.handlers:
+        logging.root.r
