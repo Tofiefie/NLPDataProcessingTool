@@ -14,4 +14,10 @@ LOG_TXT = 'log.txt'
 
 def clear_root(*, level: int) -> None:
     for handler in logging.root.handlers:
-        logging.root.r
+        logging.root.removeHandler(handler)
+        handler.close()
+
+    return logging.root.setLevel(level=level)
+
+
+def add_st
