@@ -21,4 +21,6 @@ def clear_root(*, level: int) -> None:
 
 
 def add_stream_handler(*, level: int, fmt: str) -> None:
-    stream_handler = logging.StreamHa
+    stream_handler = logging.StreamHandler(stream=sys.stderr)
+    stream_handler.setFormatter(colorlog.ColoredFormatter(
+        fmt='
