@@ -20,4 +20,5 @@ def clear_root(*, level: int) -> None:
     return logging.root.setLevel(level=level)
 
 
-def add_st
+def add_stream_handler(*, level: int, fmt: str) -> None:
+    stream_handler = logging.StreamHa
