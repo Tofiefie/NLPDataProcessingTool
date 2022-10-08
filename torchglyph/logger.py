@@ -27,4 +27,6 @@ def add_stream_handler(*, level: int, fmt: str) -> None:
         log_colors={
             'DEBUG': 'white',
             'INFO': 'green',
-   
+            'WARNING': 'bold_red',
+            'ERROR': 'bold_orange',
+            'CRITICAL': 'bold_purple
