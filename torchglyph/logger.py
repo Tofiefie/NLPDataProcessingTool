@@ -38,4 +38,5 @@ def add_stream_handler(*, level: int, fmt: str) -> None:
 
 
 def add_file_handler(*, out_dir: Path, level: int, fmt: str) -> None:
-    file_handler 
+    file_handler = logging.FileHandler(filename=str(out_dir / LOG_TXT), mode='w', encoding='utf-8')
+    file_handler.setForm
