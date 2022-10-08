@@ -34,4 +34,8 @@ def add_stream_handler(*, level: int, fmt: str) -> None:
     ))
     stream_handler.setLevel(level=level)
 
-    return logging.root.addHandler(hdlr=
+    return logging.root.addHandler(hdlr=stream_handler)
+
+
+def add_file_handler(*, out_dir: Path, level: int, fmt: str) -> None:
+    file_handler 
