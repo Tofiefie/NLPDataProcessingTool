@@ -29,4 +29,9 @@ def add_stream_handler(*, level: int, fmt: str) -> None:
             'INFO': 'green',
             'WARNING': 'bold_red',
             'ERROR': 'bold_orange',
-            'CRITICAL': 'bold_purple
+            'CRITICAL': 'bold_purple',
+        },
+    ))
+    stream_handler.setLevel(level=level)
+
+    return logging.root.addHandler(hdlr=
