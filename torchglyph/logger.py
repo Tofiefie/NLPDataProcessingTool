@@ -47,4 +47,6 @@ def add_file_handler(*, out_dir: Path, level: int, fmt: str) -> None:
 
 def init_logger(*, out_dir: Path, rank: int) -> None:
     if rank == 0:
-        level
+        level = logging.DEBUG if DEBUG else logging.INFO
+    else:
+        level = logging.DEBUG if DEBUG else logging.WARNI
