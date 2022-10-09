@@ -42,4 +42,9 @@ def add_file_handler(*, out_dir: Path, level: int, fmt: str) -> None:
     file_handler.setFormatter(fmt=logging.Formatter(fmt=fmt))
     file_handler.setLevel(level=level)
 
-    return logging.root
+    return logging.root.addHandler(hdlr=file_handler)
+
+
+def init_logger(*, out_dir: Path, rank: int) -> None:
+    if rank == 0:
+        level
