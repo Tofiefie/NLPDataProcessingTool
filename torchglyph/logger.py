@@ -49,4 +49,8 @@ def init_logger(*, out_dir: Path, rank: int) -> None:
     if rank == 0:
         level = logging.DEBUG if DEBUG else logging.INFO
     else:
-        level = logging.DEBUG if DEBUG else logging.WARNI
+        level = logging.DEBUG if DEBUG else logging.WARNING
+
+    clear_root(level=level)
+
+    fmt = '%(asctime)s [{rank}-%(levelname)-s] %(name)s | %(mes
