@@ -53,4 +53,6 @@ def init_logger(*, out_dir: Path, rank: int) -> None:
 
     clear_root(level=level)
 
-    fmt = '%(asctime)s [{rank}-%(levelname)-s] %(name)s | %(mes
+    fmt = '%(asctime)s [{rank}-%(levelname)-s] %(name)s | %(message)s'.format(rank=rank)
+    add_stream_handler(level=level, fmt=fmt)
+    add_file_handler(ou
