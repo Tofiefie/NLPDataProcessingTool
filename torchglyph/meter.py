@@ -106,3 +106,125 @@ class Meter(object):
                     })
             else:
                 logger.critical(f'field {name} is ignored')
+
+        return self
+
+    def gather(self):
+        for name in get_type_hints(self):
+            if isinstance(getattr(self, name), Meter):
+                getattr(self, name).gather()
+            else:
+                logger.critical(f'field {name} is ignored')
+
+        return self
+
+    def update(self, *args) -> None:
+        raise NotImplementedError
+
+
+@dataclass()
+class MaxMeter(Meter):
+    value: Number = -float('inf')
+
+    @property
+    def max(self) -> Number:
+        return self.value
+
+    @property
+    def keys(self) -> Tuple[Number, ...]:
+        return self.max,
+
+    @property
+    def stats(self) -> Dict[Tuple[str, ...], Number]:
+        return {(): self.max}
+
+    @detach_tensor
+    def update(self, value) -> None:
+        self.value = max(self.value, value)
+
+    def gather(self) -> None:
+        self.value = max(all_gather_object(self.value))
+
+
+@dataclass()
+class MinMeter(Meter):
+    value: Number = +float('inf')
+
+    @property
+    def min(self) -> Number:
+        return self.value
+
+    @property
+    def keys(self) -> Tuple[Number, ...]:
+        return self.min,
+
+    @property
+    def stats(self) -> Dict[Tuple[str, ...], Number]:
+        return {(): self.min}
+
+    @detach_tensor
+    def update(self, value) -> None:
+        self.value = min(self.value, value)
+
+    def gather(self) -> None:
+        self.value = min(all_gather_object(self.value))
+
+
+@dataclass()
+class SumMeter(Meter):
+    value: Number = 0
+
+    @property
+    def sum(self) -> Number:
+        return self.value
+
+    @property
+    def keys(self) -> Tuple[Number, ...]:
+        return self.sum,
+
+    @property
+    def stats(self) -> Dict[Tuple[str, ...], Number]:
+        return {(): self.sum}
+
+    @detach_tensor
+    def update(self, value) -> None:
+        self.value += value
+
+    def gather(self) -> None:
+        self.value = sum(all_gather_object(self.value))
+
+
+@dataclass()
+class AverageMeter(Meter):
+    value: Number = 0
+    weight: Number = 0
+
+    @property
+    @zero_division(default=0)
+    def average(self) -> Number:
+        return round(self.value / self.weight, ndigits=2)
+
+    @property
+    def keys(self) -> Tuple[Number, ...]:
+        return self.average,
+
+    @property
+    def stats(self) -> Dict[Tuple[str, ...], Number]:
+        return {(): self.average}
+
+    @detach_tensor
+    def update_by_sum(self, value, weight=1) -> None:
+        self.value += value
+        self.weight += weight
+
+    @detach_tensor
+    def update_by_mean(self, value, weight=1) -> None:
+        self.value += value * weight
+        self.weight += weight
+
+    def gather(self) -> None:
+        self.value = sum(all_gather_object(self.value))
+        self.weight = sum(all_gather_object(self.weight))
+
+
+@dataclass()
