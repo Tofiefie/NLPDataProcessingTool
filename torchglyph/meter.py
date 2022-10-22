@@ -228,3 +228,102 @@ class AverageMeter(Meter):
 
 
 @dataclass()
+class AccuracyMeter(Meter):
+    value: Number = 0
+    weight: Number = 0
+
+    @property
+    @zero_division(default=0)
+    def accuracy(self) -> Number:
+        return round(self.value * 100 / self.weight, ndigits=2)
+
+    @property
+    def keys(self) -> Tuple[Number, ...]:
+        return self.accuracy,
+
+    @property
+    def stats(self) -> Dict[Tuple[str, ...], Number]:
+        return {(): self.accuracy}
+
+    @detach_tensor
+    def update_by_sum(self, value, weight=1) -> None:
+        self.value += value
+        self.weight += weight
+
+    @detach_tensor
+    def update_by_mean(self, value, weight=1) -> None:
+        self.value += value * weight
+        self.weight += weight
+
+    def update_by_tensor(self, prd: Tensor, tgt: Tensor, pad_token_id: int):
+        mask = tgt != pad_token_id
+        return self.update_by_sum(((prd == tgt) & mask).long().sum(), mask.long().sum())
+
+    def update_by_sequence(self, prd: TCP, tgt: TCP) -> None:
+        assert type(prd) is type(tgt), f'{type(prd)} is not  {type(tgt)}'
+
+        self.update_by_sum((prd.data == tgt.data).float().sum(), prd.data.numel())
+
+    def gather(self) -> None:
+        self.value = sum(all_gather_object(self.value))
+        self.weight = sum(all_gather_object(self.weight))
+
+
+@dataclass()
+class ClassificationMeter(Meter):
+    value: Number = 0
+    weight_prd: Number = 0
+    weight_tgt: Number = 0
+
+    @property
+    @zero_division(default=0)
+    def precision(self) -> Number:
+        return round(self.value * 100 / self.weight_prd, ndigits=2)
+
+    @property
+    @zero_division(default=0)
+    def recall(self) -> Number:
+        return round(self.value * 100 / self.weight_tgt, ndigits=2)
+
+    @property
+    @zero_division(default=0)
+    def f1(self) -> Number:
+        return round(self.value * 200 / (self.weight_prd + self.weight_tgt), ndigits=2)
+
+    @property
+    def keys(self) -> Tuple[Number, ...]:
+        return self.f1, self.precision, self.recall
+
+    @property
+    def stats(self) -> Dict[Tuple[str, ...], Number]:
+        return {('f1',): self.f1, ('precision',): self.precision, ('recall',): self.recall}
+
+    @detach_tensor
+    def update(self, value, weight_prd, weight_tgt) -> None:
+        self.value += value
+        self.weight_prd += weight_prd
+        self.weight_tgt += weight_tgt
+
+    def update_by_prd(self, prd: List[Any], tgt: List[Any]) -> None:
+        prd = set(prd)
+        tgt = set(tgt)
+
+        self.value += len(prd & tgt)
+        self.weight_prd += len(prd)
+        self.weight_tgt += len(tgt)
+
+    def gather(self) -> None:
+        self.value = sum(all_gather_object(self.value))
+        self.weight_prd = sum(all_gather_object(self.weight_prd))
+        self.weight_tgt = sum(all_gather_object(self.weight_tgt))
+
+
+@dataclass()
+class TimeMeter(Meter):
+    seconds: float = 0
+    units: int = 0
+
+    @property
+    @zero_division(default=0)
+    def second_per_unit(self) -> float:
+        return round(self.seconds / self.units, ndigits=6)
