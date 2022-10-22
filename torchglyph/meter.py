@@ -327,3 +327,65 @@ class TimeMeter(Meter):
     @zero_division(default=0)
     def second_per_unit(self) -> float:
         return round(self.seconds / self.units, ndigits=6)
+
+    @property
+    @zero_division(default=0)
+    def unit_per_second(self) -> float:
+        return round(self.units / self.seconds, ndigits=6)
+
+    @property
+    def keys(self) -> Tuple[Number, ...]:
+        return self.unit_per_second,
+
+    @property
+    def stats(self) -> Dict[Tuple[str, ...], Number]:
+        return {
+            ('unit_per_second',): self.unit_per_second,
+            ('second_per_unit',): self.second_per_unit,
+        }
+
+    def tik(self) -> None:
+        self.start_tm = datetime.now()
+
+    def tok(self) -> None:
+        self.seconds += (datetime.now() - self.start_tm).total_seconds()
+        self.units += 1
+
+        del self.start_tm
+
+    def __enter__(self):
+        self.tik()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.tok()
+
+    @detach_tensor
+    def update(self, seconds: float, units: int = 1) -> None:
+        self.seconds += seconds
+        self.units += units
+
+    def gather(self) -> None:
+        self.seconds = sum(all_gather_object(self.seconds))
+        self.units = sum(all_gather_object(self.units))
+
+
+@dataclass()
+class SequenceMeter(Meter):
+    snt: AverageMeter = field(default_factory=AverageMeter)
+    tok: AverageMeter = field(default_factory=AverageMeter)
+    len: AverageMeter = field(default_factory=AverageMeter)
+    max: MaxMeter = field(default_factory=MaxMeter)
+
+    @property
+    def keys(self) -> Tuple[Number, ...]:
+        return 0,
+
+    def update(self, sequence: Union[CattedSequence, PackedSequence]):
+        t, s, *_ = sequence.size()
+        m, *_ = sequence.data.size()
+
+        self.snt.update_by_sum(s)
+        self.tok.update_by_sum(t)
+        self.len.update_by_sum(t, s)
+        self.max.update(m)
