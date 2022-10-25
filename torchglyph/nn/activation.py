@@ -6,4 +6,9 @@ from torch import nn
 
 class ReLU(nn.ReLU):
     def __init__(self) -> None:
-        super(ReL
+        super(ReLU, self).__init__()
+
+
+class GELU(nn.GELU):
+    def __init__(self) -> None:
+        su
