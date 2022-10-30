@@ -16,4 +16,9 @@ class GELU(nn.GELU):
 
 class SiLU(nn.SiLU):
     def __init__(self) -> None:
-        su
+        super(SiLU, self).__init__()
+
+
+class ELU(nn.ELU):
+    def __init__(self) -> None:
+        sup
