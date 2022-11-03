@@ -21,4 +21,11 @@ class SiLU(nn.SiLU):
 
 class ELU(nn.ELU):
     def __init__(self) -> None:
-        sup
+        super(ELU, self).__init__()
+
+
+Activations = Union[
+    Type[ReLU],
+    Type[GELU],
+    Type[SiLU],
+    Type[
