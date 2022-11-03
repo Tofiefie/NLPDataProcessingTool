@@ -28,4 +28,5 @@ Activations = Union[
     Type[ReLU],
     Type[GELU],
     Type[SiLU],
-    Type[
+    Type[ELU],
+]
