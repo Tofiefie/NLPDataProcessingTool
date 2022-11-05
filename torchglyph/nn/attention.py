@@ -90,3 +90,75 @@ class MultiAttention(MultiAttentionMeta):
             nn.Softmax(dim=-1),
             nn.Dropout(p=dropout),
         )
+
+        self.o = nn.Linear(num_heads * self.head_dim, o_dim, bias=bias)
+
+    def forward_qkv(self, q: Tensor, k: Tensor, v: Tensor, cache: Cache = None, **kwargs):
+        assert cache is None
+
+        q = self.q(q).unflatten(dim=-1, sizes=(self.num_heads, self.head_dim))
+        k = self.k(k).unflatten(dim=-1, sizes=(self.num_heads, self.head_dim))
+        v = self.v(v).unflatten(dim=-1, sizes=(self.num_heads, self.head_dim))
+
+        return q, k, v
+
+
+class SelfAttention(MultiAttentionMeta):
+    def __init__(self, algo: Union[Type[dot], Type[detach]] = dot,
+                 num_heads: int = 8, bias: bool = True, dropout: float = 0.0, *,
+                 q_dim: int, **kwargs) -> None:
+        super(SelfAttention, self).__init__(
+            algo=algo, bias=bias, num_heads=num_heads,
+            q_dim=q_dim, k_dim=q_dim, v_dim=q_dim,
+            o_dim=q_dim, dropout=dropout,
+        )
+
+        self.qkv = nn.Linear(q_dim, 3 * num_heads * self.head_dim, bias=bias)
+
+        self.softmax = nn.Sequential(
+            nn.Softmax(dim=-1),
+            nn.Dropout(p=dropout),
+        )
+
+        self.o = nn.Linear(num_heads * self.head_dim, q_dim, bias=bias)
+
+    def forward_qkv(self, tensor: Tensor, cache: Cache = None, **kwargs):
+        qkv = self.qkv(tensor).unflatten(dim=-1, sizes=(3, self.num_heads, self.head_dim))
+        q, k, v = qkv[..., 0, :, :], qkv[..., 1, :, :], qkv[..., 2, :, :]
+
+        if cache is not None:
+            ks, vs = cache
+            k = torch.cat([ks, k], dim=-3)
+            v = torch.cat([vs, v], dim=-3)
+
+        return q, k, v
+
+
+class CrossAttention(MultiAttentionMeta):
+    def __init__(self, algo: Union[Type[dot], Type[detach]] = dot,
+                 num_heads: int = 8, bias: bool = True, dropout: float = 0.0, *,
+                 q_dim: int, kv_dim: int, **kwargs) -> None:
+        super(CrossAttention, self).__init__(
+            algo=algo, bias=bias, num_heads=num_heads,
+            q_dim=q_dim, k_dim=kv_dim, v_dim=kv_dim,
+            o_dim=q_dim, dropout=dropout,
+        )
+
+        self.q = nn.Linear(q_dim, num_heads * self.head_dim, bias=bias)
+        self.kv = nn.Linear(kv_dim, 2 * num_heads * self.head_dim, bias=bias)
+
+        self.softmax = nn.Sequential(
+            nn.Softmax(dim=-1),
+            nn.Dropout(p=dropout),
+        )
+
+        self.o = nn.Linear(num_heads * self.head_dim, q_dim, bias=bias)
+
+    def forward_qkv(self, q: Tensor, kv: Tensor, cache: Cache = None, **kwargs):
+        q = self.q(q).unflatten(dim=-1, sizes=(self.num_heads, self.head_dim))
+
+        if cache is not None:
+            return q, *cache
+
+        kv = self.kv(kv).unflatten(dim=-1, sizes=(2, self.num_heads, self.head_dim))
+        return q, kv[..., 0, :, :], kv[..., 1, :, :]
