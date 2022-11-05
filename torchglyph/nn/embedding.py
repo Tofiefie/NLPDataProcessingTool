@@ -63,3 +63,9 @@ class PreTrainedEmbedding(DownloadMixin):
 
 class Glove6B(PreTrainedEmbedding):
     header = False
+
+    @classmethod
+    def urls(cls, dim: int, **kwargs) -> List[Tuple[str, ...]]:
+        return [
+            ('https://huggingface.co/stanfordnlp/glove/resolve/main/glove.6B.zip', f'glove.6B.{dim}d.txt'),
+        ]
