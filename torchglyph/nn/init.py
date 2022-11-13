@@ -8,4 +8,6 @@ from torch.nn.init import orthogonal_
 from torch.nn.init import zeros_
 
 __all__ = [
-    'constant_', 'zer
+    'constant_', 'zeros_', 'ones_',
+    'xavier_normal_', 'kaiming_normal_',
+    'xavier_uniform_', 'kaim
