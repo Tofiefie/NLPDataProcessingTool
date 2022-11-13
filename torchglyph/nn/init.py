@@ -10,4 +10,10 @@ from torch.nn.init import zeros_
 __all__ = [
     'constant_', 'zeros_', 'ones_',
     'xavier_normal_', 'kaiming_normal_',
-    'xavier_uniform_', 'kaim
+    'xavier_uniform_', 'kaiming_uniform_',
+    'bert_normal_', 'orthogonal_',
+]
+
+
+@torch.no_grad()
+def xavier_normal_(tensor:
