@@ -16,4 +16,5 @@ __all__ = [
 
 
 @torch.no_grad()
-def xavier_normal_(tensor:
+def xavier_normal_(tensor: Tensor, fan_in: int, fan_out: int, gain: float = 1.) -> Tensor:
+    std = gain * (2.0 / (fan_in + fan_out)) ** 0.5
