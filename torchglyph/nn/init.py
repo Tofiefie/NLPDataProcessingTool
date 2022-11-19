@@ -22,4 +22,5 @@ def xavier_normal_(tensor: Tensor, fan_in: int, fan_out: int, gain: float = 1.) 
 
 
 @torch.no_grad()
-def xavier_uniform_(tensor: Tensor, fan_in: int,
+def xavier_uniform_(tensor: Tensor, fan_in: int, fan_out: int, gain: float = 1.) -> Tensor:
+    bound = gain * (6.0 / (fan_in + fan_out))
