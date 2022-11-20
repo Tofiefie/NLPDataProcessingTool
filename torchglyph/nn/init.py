@@ -35,4 +35,5 @@ def kaiming_normal_(tensor: Tensor, fan: int, a: float = 0., nonlinearity: str =
 
 @torch.no_grad()
 def kaiming_uniform_(tensor: Tensor, fan: int, a: float = 0., nonlinearity: str = 'leaky_relu') -> Tensor:
-    bound = calculate_gain(nonlinea
+    bound = calculate_gain(nonlinearity, a) * (3.0 / fan) ** 0.5
+    return init.uniform_(tensor, a=-bound, b=+bound)
