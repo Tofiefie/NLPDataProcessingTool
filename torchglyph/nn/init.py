@@ -28,4 +28,4 @@ def xavier_uniform_(tensor: Tensor, fan_in: int, fan_out: int, gain: float = 1.)
 
 
 @torch.no_grad()
-def kaimi
+def kaiming_normal_(tensor: Tensor, fan: int, a: float = 0., nonlinearity: str = 'leaky_r
