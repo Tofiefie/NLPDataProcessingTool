@@ -30,4 +30,8 @@ def xavier_uniform_(tensor: Tensor, fan_in: int, fan_out: int, gain: float = 1.)
 @torch.no_grad()
 def kaiming_normal_(tensor: Tensor, fan: int, a: float = 0., nonlinearity: str = 'leaky_relu') -> Tensor:
     std = calculate_gain(nonlinearity, a) / fan ** 0.5
-    return init.n
+    return init.normal_(tensor, mean=0, std=std)
+
+
+@torch.no_grad()
+def kaiming_uniform_(tensor: Tensor, fan:
