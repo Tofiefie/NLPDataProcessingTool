@@ -40,4 +40,5 @@ def kaiming_uniform_(tensor: Tensor, fan: int, a: float = 0., nonlinearity: str 
 
 
 @torch.no_grad()
-def bert_normal_(tensor: Tensor, mean: float = 0., std: float = 0.
+def bert_normal_(tensor: Tensor, mean: float = 0., std: float = 0.02) -> Tensor:
+    return init.normal_(tensor, mean=mean, std=std)
