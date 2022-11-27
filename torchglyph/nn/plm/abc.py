@@ -3,4 +3,6 @@ from typing import List
 from typing import Union
 
 from transformers import AutoConfig
-from transformers
+from transformers import AutoModel
+from transformers import AutoTokenizer
+from transformers import PreTrai
