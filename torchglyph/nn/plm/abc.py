@@ -8,3 +8,12 @@ from transformers import AutoTokenizer
 from transformers import PreTrainedModel
 from transformers import PreTrainedTokenizer
 from transformers import PretrainedConfig
+
+from torchglyph.nn.plm import utils
+
+logger = getLogger(__name__)
+
+
+class PLM(object):
+    mapping = {}
+    checkpoints
