@@ -16,4 +16,7 @@ logger = getLogger(__name__)
 
 class PLM(object):
     mapping = {}
-    checkpoints
+    checkpoints = {}
+
+    def __init__(self, *, lang: str, **kwargs) -> None:
+        super(PLM, self
