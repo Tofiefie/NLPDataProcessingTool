@@ -19,4 +19,9 @@ class PLM(object):
     checkpoints = {}
 
     def __init__(self, *, lang: str, **kwargs) -> None:
-        super(PLM, self
+        super(PLM, self).__init__()
+
+        self.lang = lang
+        self.pretrained_model_name = self.checkpoints[lang]
+
+    
