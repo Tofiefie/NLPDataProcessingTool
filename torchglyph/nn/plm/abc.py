@@ -28,4 +28,6 @@ class PLM(object):
         self._tokenizer = None
         self._model = None
 
-    def __r
+    def __repr__(self) -> str:
+        return f'{self.__class__.__name__}({self.pretrained_model_name})'
+
