@@ -24,4 +24,8 @@ class PLM(object):
         self.lang = lang
         self.pretrained_model_name = self.checkpoints[lang]
 
-    
+        self._config = None
+        self._tokenizer = None
+        self._model = None
+
+    def __r
