@@ -34,4 +34,5 @@ class PLM(object):
     @property
     def config(self) -> PretrainedConfig:
         if self._config is None:
-           
+            self._config = AutoConfig.from_pretrained(
+                pretrained_model_name_or
