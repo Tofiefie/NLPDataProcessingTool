@@ -31,3 +31,7 @@ class PLM(object):
     def __repr__(self) -> str:
         return f'{self.__class__.__name__}({self.pretrained_model_name})'
 
+    @property
+    def config(self) -> PretrainedConfig:
+        if self._config is None:
+           
