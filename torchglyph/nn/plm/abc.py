@@ -35,4 +35,10 @@ class PLM(object):
     def config(self) -> PretrainedConfig:
         if self._config is None:
             self._config = AutoConfig.from_pretrained(
-                pretrained_model_name_or
+                pretrained_model_name_or_path=self.pretrained_model_name,
+            )
+
+        return self._config
+
+    @property
+    def tokenize
