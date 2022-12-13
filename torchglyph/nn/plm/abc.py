@@ -41,4 +41,6 @@ class PLM(object):
         return self._config
 
     @property
-    def tokenize
+    def tokenizer(self) -> PreTrainedTokenizer:
+        if self._tokenizer is None:
+            self._token
