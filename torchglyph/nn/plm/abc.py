@@ -43,4 +43,5 @@ class PLM(object):
     @property
     def tokenizer(self) -> PreTrainedTokenizer:
         if self._tokenizer is None:
-            self._token
+            self._tokenizer = AutoTokenizer.from_pretrained(
+                pretrained_model_name_or_path=self.pret
