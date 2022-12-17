@@ -52,4 +52,6 @@ class PLM(object):
         return self._tokenizer
 
     @property
-   
+    def model(self) -> PreTrainedModel:
+        if self._model is None:
+            self._model = Au
