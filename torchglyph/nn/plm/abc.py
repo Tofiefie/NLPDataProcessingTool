@@ -46,4 +46,10 @@ class PLM(object):
             self._tokenizer = AutoTokenizer.from_pretrained(
                 pretrained_model_name_or_path=self.pretrained_model_name,
                 src_lang=self.mapping.get(self.lang, None),
-             
+                use_fast=True,
+            )
+
+        return self._tokenizer
+
+    @property
+   
