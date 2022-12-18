@@ -54,4 +54,6 @@ class PLM(object):
     @property
     def model(self) -> PreTrainedModel:
         if self._model is None:
-            self._model = Au
+            self._model = AutoModel.from_pretrained(
+                pretrained_model_name_or_path=self.pretrained_model_name,
+  
