@@ -56,4 +56,9 @@ class PLM(object):
         if self._model is None:
             self._model = AutoModel.from_pretrained(
                 pretrained_model_name_or_path=self.pretrained_model_name,
-  
+            )
+
+        return self._model
+
+    def tokenize(self, text: Union[str, List[str]], *,
+       
