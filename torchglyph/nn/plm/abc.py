@@ -61,4 +61,5 @@ class PLM(object):
         return self._model
 
     def tokenize(self, text: Union[str, List[str]], *,
-       
+                 add_prefix_space: bool = False, add_special_tokens: bool = True):
+        if 
