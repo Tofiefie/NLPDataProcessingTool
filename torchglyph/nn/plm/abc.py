@@ -70,4 +70,6 @@ class PLM(object):
             )
 
         return utils.tokenize_segment(
-            text=text, 
+            text=text, tokenizer=self.tokenizer,
+            add_prefix_space=add_prefix_space,
+            add_special_tokens=add_spec
