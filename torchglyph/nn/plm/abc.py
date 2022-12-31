@@ -64,4 +64,6 @@ class PLM(object):
                  add_prefix_space: bool = False, add_special_tokens: bool = True):
         if isinstance(text, str):
             return utils.tokenize_sequence(
-                text=text, tokenize
+                text=text, tokenizer=self.tokenizer,
+                add_prefix_space=add_prefix_space,
+                add_special_tokens=add_spec
