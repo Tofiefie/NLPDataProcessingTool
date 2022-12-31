@@ -66,4 +66,8 @@ class PLM(object):
             return utils.tokenize_sequence(
                 text=text, tokenizer=self.tokenizer,
                 add_prefix_space=add_prefix_space,
-                add_special_tokens=add_spec
+                add_special_tokens=add_special_tokens,
+            )
+
+        return utils.tokenize_segment(
+            text=text, 
