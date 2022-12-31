@@ -62,4 +62,6 @@ class PLM(object):
 
     def tokenize(self, text: Union[str, List[str]], *,
                  add_prefix_space: bool = False, add_special_tokens: bool = True):
-        if 
+        if isinstance(text, str):
+            return utils.tokenize_sequence(
+                text=text, tokenize
