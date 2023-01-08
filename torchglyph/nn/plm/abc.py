@@ -72,4 +72,7 @@ class PLM(object):
         return utils.tokenize_segment(
             text=text, tokenizer=self.tokenizer,
             add_prefix_space=add_prefix_space,
-            add_special_tokens=add_spec
+            add_special_tokens=add_special_tokens,
+        )
+
+    def tokenize_batch(self, text: Union[List[str], List[List[str]]], 
