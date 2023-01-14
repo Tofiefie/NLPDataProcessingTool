@@ -77,4 +77,6 @@ class PLM(object):
 
     def tokenize_batch(self, text: Union[List[str], List[List[str]]], *,
                        add_prefix_space: bool = False, add_special_tokens: bool = True):
-        if
+        if isinstance(text[0], str):
+            return utils.tokenize_sequence_batch(
+     
