@@ -75,4 +75,6 @@ class PLM(object):
             add_special_tokens=add_special_tokens,
         )
 
-    def tokenize_batch(self, text: Union[List[str], List[List[str]]], 
+    def tokenize_batch(self, text: Union[List[str], List[List[str]]], *,
+                       add_prefix_space: bool = False, add_special_tokens: bool = True):
+        if
