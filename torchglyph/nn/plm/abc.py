@@ -84,4 +84,6 @@ class PLM(object):
                 add_special_tokens=add_special_tokens,
             )
 
-        return utils.tokenize_segme
+        return utils.tokenize_segment_batch(
+            text=text, tokenizer=self.tokenizer,
+            add_prefix_space=add_prefix
