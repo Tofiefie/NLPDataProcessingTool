@@ -81,3 +81,7 @@ class PLM(object):
             return utils.tokenize_sequence_batch(
                 text=text, tokenizer=self.tokenizer,
                 add_prefix_space=add_prefix_space,
+                add_special_tokens=add_special_tokens,
+            )
+
+        return utils.tokenize_segme
