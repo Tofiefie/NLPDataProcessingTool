@@ -122,3 +122,12 @@ class MBartLarge(PLM):
         'tr': 'tr_TR',
         'vi': 'vi_VN',
         'zh': 'zh_CN',
+    }
+
+    checkpoints = defaultdict(lambda: 'facebook/mbart-large-cc25')
+
+
+class DeBERTaBase(PLM):
+    checkpoints = {
+        'en': 'microsoft/deberta-base',
+    }
