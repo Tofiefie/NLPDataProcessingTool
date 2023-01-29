@@ -60,3 +60,81 @@ def qof_bert_intermediate(self: BertIntermediate, **kwargs):
 
 @qof_recur.register
 def qof_bert_output(self: BertOutput, **kwargs):
+    self.dense.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_roberta_model(self: RobertaModel, **kwargs):
+    for module in self.modules():
+        if self is not module:
+            qof_recur(module, **kwargs)
+
+
+@qof_recur.register
+def qof_roberta_self_attention(self: RobertaSelfAttention, **kwargs):
+    self.query.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_roberta_self_output(self: RobertaSelfOutput, **kwargs):
+    self.dense.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_roberta_intermediate(self: RobertaIntermediate, **kwargs):
+    self.dense.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_roberta_output(self: RobertaOutput, **kwargs):
+    self.dense.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_bart_model(self: BartModel, **kwargs):
+    for module in self.modules():
+        if self is not module:
+            qof_recur(module, **kwargs)
+
+
+@qof_recur.register
+def qof_bart_attention(self: BartAttention, **kwargs):
+    self.q_proj.requires_grad_(True)
+    self.out_proj.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_bart_encoder_layer(self: BartEncoderLayer, **kwargs):
+    self.fc1.requires_grad_(True)
+    self.fc2.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_bart_decoder_layer(self: BartDecoderLayer, **kwargs):
+    self.fc1.requires_grad_(True)
+    self.fc2.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_mbart_model(self: MBartModel, **kwargs):
+    for module in self.modules():
+        if self is not module:
+            qof_recur(module, **kwargs)
+
+
+@qof_recur.register
+def qof_mbart_attention(self: MBartAttention, **kwargs):
+    self.q_proj.requires_grad_(True)
+    self.out_proj.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_mbart_encoder_layer(self: MBartEncoderLayer, **kwargs):
+    self.fc1.requires_grad_(True)
+    self.fc2.requires_grad_(True)
+
+
+@qof_recur.register
+def qof_mbart_decoder_layer(self: MBartDecoderLayer, **kwargs):
+    self.fc1.requires_grad_(True)
+    self.fc2.requires_grad_(True)
