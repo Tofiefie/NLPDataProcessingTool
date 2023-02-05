@@ -10,4 +10,6 @@ from torch import nn
 from torchglyph.nn.activation import Activations
 from torchglyph.nn.activation import ReLU
 from torchglyph.nn.attention import Cache
-from torchglyph.nn.attention import Cros
+from torchglyph.nn.attention import CrossAttention
+from torchglyph.nn.attention import SelfAttention
+from torchglyph.nn.con
