@@ -12,4 +12,6 @@ from torchglyph.nn.activation import ReLU
 from torchglyph.nn.attention import Cache
 from torchglyph.nn.attention import CrossAttention
 from torchglyph.nn.attention import SelfAttention
-from torchglyph.nn.con
+from torchglyph.nn.connection import Connections
+from torchglyph.nn.connection import PostLayerNorm
+from torchglyph.nn
