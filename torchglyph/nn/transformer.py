@@ -18,4 +18,6 @@ from torchglyph.nn.utils import gather
 
 
 class TransformerFfn(nn.Sequential):
-    def __init__(self, bias: bool = True
+    def __init__(self, bias: bool = True, activation: Activations = ReLU, *,
+                 in_features: int, dropout: float) -> None:
+        self.in_features = 
