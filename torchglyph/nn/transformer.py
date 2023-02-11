@@ -14,4 +14,8 @@ from torchglyph.nn.attention import CrossAttention
 from torchglyph.nn.attention import SelfAttention
 from torchglyph.nn.connection import Connections
 from torchglyph.nn.connection import PostLayerNorm
-from torchglyph.nn
+from torchglyph.nn.utils import gather
+
+
+class TransformerFfn(nn.Sequential):
+    def __init__(self, bias: bool = True
