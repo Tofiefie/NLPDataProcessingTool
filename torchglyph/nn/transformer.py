@@ -22,4 +22,7 @@ class TransformerFfn(nn.Sequential):
                  in_features: int, dropout: float) -> None:
         self.in_features = in_features
         self.hidden_features = in_features * 4
-        self.out_features = in_
+        self.out_features = in_features
+
+        super(TransformerFfn, self).__init__(
+            nn.Linear(self.in_fea
