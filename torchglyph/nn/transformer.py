@@ -25,4 +25,6 @@ class TransformerFfn(nn.Sequential):
         self.out_features = in_features
 
         super(TransformerFfn, self).__init__(
-            nn.Linear(self.in_fea
+            nn.Linear(self.in_features, self.hidden_features, bias=bias),
+            activation(),
+            nn.Dropout(dropout)
