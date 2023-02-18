@@ -28,4 +28,9 @@ class TransformerFfn(nn.Sequential):
             nn.Linear(self.in_features, self.hidden_features, bias=bias),
             activation(),
             nn.Dropout(dropout),
-            nn.Linear(self.hidden_features, self.out_features, bias=bi
+            nn.Linear(self.hidden_features, self.out_features, bias=bias),
+            nn.Dropout(dropout),
+        )
+
+    def __repr__(self) -> str:
+        r
