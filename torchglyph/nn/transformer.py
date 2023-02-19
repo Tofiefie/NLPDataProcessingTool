@@ -46,4 +46,6 @@ class TransformerFfn(nn.Sequential):
 class TransformerEncoderLayer(nn.Module):
     def __init__(self,
                  self_: Type[SelfAttention] = SelfAttention,
-                 ffn_: Type[TransformerFf
+                 ffn_: Type[TransformerFfn] = TransformerFfn,
+                 layer_norm_: Connections = PostLayerNorm,
+                 dropout: f
