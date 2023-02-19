@@ -33,4 +33,7 @@ class TransformerFfn(nn.Sequential):
         )
 
     def __repr__(self) -> str:
-        r
+        return f'{self.__class__.__name__}({self.extra_repr()})'
+
+    def extra_repr(self) -> str:
+        return
