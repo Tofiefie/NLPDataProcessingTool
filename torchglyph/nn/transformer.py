@@ -36,4 +36,6 @@ class TransformerFfn(nn.Sequential):
         return f'{self.__class__.__name__}({self.extra_repr()})'
 
     def extra_repr(self) -> str:
-        return
+        return ', '.join([
+            f'in_size={self.in_features}',
+            f'hidden_size={self.hidden_
