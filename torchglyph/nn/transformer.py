@@ -38,4 +38,10 @@ class TransformerFfn(nn.Sequential):
     def extra_repr(self) -> str:
         return ', '.join([
             f'in_size={self.in_features}',
-            f'hidden_size={self.hidden_
+            f'hidden_size={self.hidden_features}',
+            f'dropout={self[-1].p}',
+        ])
+
+
+class TransformerEncoderLayer(nn.Module):
+    def __init__
