@@ -49,4 +49,8 @@ class TransformerEncoderLayer(nn.Module):
                  ffn_: Type[TransformerFfn] = TransformerFfn,
                  layer_norm_: Connections = PostLayerNorm,
                  dropout: float = 0.1, *, in_size: int) -> None:
-        super(TransformerEncoderLayer, self).__init__
+        super(TransformerEncoderLayer, self).__init__()
+
+        self.self = self_(q_dim=in_size, o_dim=in_size, dropout=dropout)
+
+        self.ffn = ffn_(in_
