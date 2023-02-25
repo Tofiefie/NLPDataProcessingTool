@@ -53,4 +53,7 @@ class TransformerEncoderLayer(nn.Module):
 
         self.self = self_(q_dim=in_size, o_dim=in_size, dropout=dropout)
 
-        self.ffn = ffn_(in_
+        self.ffn = ffn_(in_features=in_size, dropout=dropout)
+        self.encoding_dim = self.ffn.out_features
+
+      
