@@ -60,4 +60,6 @@ class TransformerEncoderLayer(nn.Module):
         self.norm1 = layer_norm_(in_size=in_size)
         self.norm2 = layer_norm_(in_size=in_size)
 
-    def att(self, tensor: Tensor, mask: Tensor
+    def att(self, tensor: Tensor, mask: Tensor) -> Tensor:
+        tensor, _, _ = self.self(tensor, mask=mask)
+        return self.dropout(tensor)
