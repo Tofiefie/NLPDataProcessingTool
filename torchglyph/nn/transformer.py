@@ -63,3 +63,6 @@ class TransformerEncoderLayer(nn.Module):
     def att(self, tensor: Tensor, mask: Tensor) -> Tensor:
         tensor, _, _ = self.self(tensor, mask=mask)
         return self.dropout(tensor)
+
+    def forward(self, tensor: Tensor, mask: Tensor = None) -> Tensor:
+        tensor = self.norm1(tensor
