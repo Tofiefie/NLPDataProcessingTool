@@ -65,4 +65,6 @@ class TransformerEncoderLayer(nn.Module):
         return self.dropout(tensor)
 
     def forward(self, tensor: Tensor, mask: Tensor = None) -> Tensor:
-        tensor = self.norm1(tensor
+        tensor = self.norm1(tensor, sub_layer=self.att, mask=mask)
+        tensor = self.norm2(tensor, sub_layer=self.ffn)
+ 
