@@ -67,4 +67,8 @@ class TransformerEncoderLayer(nn.Module):
     def forward(self, tensor: Tensor, mask: Tensor = None) -> Tensor:
         tensor = self.norm1(tensor, sub_layer=self.att, mask=mask)
         tensor = self.norm2(tensor, sub_layer=self.ffn)
- 
+        return tensor
+
+
+class TransformerEncoder(nn.ModuleList):
+    def __init__(self, layer: Type[Transforme
