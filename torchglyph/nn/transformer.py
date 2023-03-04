@@ -71,4 +71,5 @@ class TransformerEncoderLayer(nn.Module):
 
 
 class TransformerEncoder(nn.ModuleList):
-    def __init__(self, layer: Type[Transforme
+    def __init__(self, layer: Type[TransformerEncoderLayer] = TransformerEncoderLayer,
+                 num_layers: int = 6, *, in_size: int) -> No
