@@ -81,4 +81,6 @@ class TransformerEncoder(nn.ModuleList):
         super(TransformerEncoder, self).__init__(modules)
         self.encoding_dim = modules[-1].encoding_dim
 
-    def forward(self, tensor: Tensor, mask: Tenso
+    def forward(self, tensor: Tensor, mask: Tensor = None) -> Tensor:
+        for layer in self:
+            tensor = layer(tensor=ten
