@@ -75,4 +75,7 @@ class TransformerEncoder(nn.ModuleList):
                  num_layers: int = 6, *, in_size: int) -> None:
         modules = []
         for _ in range(num_layers):
-            modules.append(layer(i
+            modules.append(layer(in_size=in_size))
+            in_size = modules[-1].encoding_dim
+
+        super(TransformerEncoder, self).__i
