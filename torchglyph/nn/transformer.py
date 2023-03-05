@@ -83,4 +83,9 @@ class TransformerEncoder(nn.ModuleList):
 
     def forward(self, tensor: Tensor, mask: Tensor = None) -> Tensor:
         for layer in self:
-            tensor = layer(tensor=ten
+            tensor = layer(tensor=tensor, mask=mask)
+        return tensor
+
+
+class TransformerDecoderLayer(nn.Module):
+    def __init__
