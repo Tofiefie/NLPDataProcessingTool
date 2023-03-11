@@ -90,4 +90,5 @@ class TransformerEncoder(nn.ModuleList):
 class TransformerDecoderLayer(nn.Module):
     def __init__(self,
                  self_: Type[SelfAttention] = SelfAttention,
-                 cross_: Typ
+                 cross_: Type[CrossAttention] = CrossAttention,
+                 ffn_: Type[TransformerFfn] = Transf
