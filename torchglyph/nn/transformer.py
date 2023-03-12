@@ -91,4 +91,6 @@ class TransformerDecoderLayer(nn.Module):
     def __init__(self,
                  self_: Type[SelfAttention] = SelfAttention,
                  cross_: Type[CrossAttention] = CrossAttention,
-                 ffn_: Type[TransformerFfn] = Transf
+                 ffn_: Type[TransformerFfn] = TransformerFfn,
+                 layer_norm_: Connections = PostLayerNorm,
+                 dropout: float = 0
