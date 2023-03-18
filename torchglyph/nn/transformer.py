@@ -96,4 +96,5 @@ class TransformerDecoderLayer(nn.Module):
                  dropout: float = 0.1, *, in_size: int) -> None:
         super(TransformerDecoderLayer, self).__init__()
 
-        self.self_at
+        self.self_attention = self_(q_dim=in_size, o_dim=in_size, dropout=dropout)
+        self.cross_attentio
