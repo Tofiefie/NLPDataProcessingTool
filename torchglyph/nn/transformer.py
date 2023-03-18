@@ -97,4 +97,6 @@ class TransformerDecoderLayer(nn.Module):
         super(TransformerDecoderLayer, self).__init__()
 
         self.self_attention = self_(q_dim=in_size, o_dim=in_size, dropout=dropout)
-        self.cross_attentio
+        self.cross_attention = cross_(q_dim=in_size, kv_dim=in_size, o_dim=in_size, dropout=dropout)
+
+        self.ffn 
