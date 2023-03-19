@@ -103,4 +103,6 @@ class TransformerDecoderLayer(nn.Module):
         self.encoding_dim = self.ffn.out_features
 
         self.dropout = nn.Dropout(dropout)
-        self.norm1 = layer_norm_(in_size=in_si
+        self.norm1 = layer_norm_(in_size=in_size)
+        self.norm2 = layer_norm_(in_size=in_size)
+        self.norm3 = layer_norm_(in_size=in_siz
