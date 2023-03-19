@@ -108,4 +108,5 @@ class TransformerDecoderLayer(nn.Module):
         self.norm3 = layer_norm_(in_size=in_size)
 
     def att(self, tensor: Tensor, mask: Tensor, cache: Optional[Cache]) -> Tuple[Tensor, Cache]:
-      
+        tensor, _, cache = self.self_attention(tensor, mask=mask, cache=cache)
+        return self.dropo
