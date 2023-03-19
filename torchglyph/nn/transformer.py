@@ -105,4 +105,7 @@ class TransformerDecoderLayer(nn.Module):
         self.dropout = nn.Dropout(dropout)
         self.norm1 = layer_norm_(in_size=in_size)
         self.norm2 = layer_norm_(in_size=in_size)
-        self.norm3 = layer_norm_(in_size=in_siz
+        self.norm3 = layer_norm_(in_size=in_size)
+
+    def att(self, tensor: Tensor, mask: Tensor, cache: Optional[Cache]) -> Tuple[Tensor, Cache]:
+      
