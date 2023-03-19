@@ -100,4 +100,7 @@ class TransformerDecoderLayer(nn.Module):
         self.cross_attention = cross_(q_dim=in_size, kv_dim=in_size, o_dim=in_size, dropout=dropout)
 
         self.ffn = ffn_(in_features=in_size, dropout=dropout)
-        self.encoding_dim = self.ffn.ou
+        self.encoding_dim = self.ffn.out_features
+
+        self.dropout = nn.Dropout(dropout)
+        self.norm1 = layer_norm_(in_size=in_si
