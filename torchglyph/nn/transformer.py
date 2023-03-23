@@ -112,4 +112,7 @@ class TransformerDecoderLayer(nn.Module):
         return self.dropout(tensor), cache
 
     def crs(self, tensor: Tensor, memory: Tensor, memory_mask: Tensor, cache: Optional[Cache]) -> Tuple[Tensor, Cache]:
-        tensor, _, cache = self.cross_attention(tensor, 
+        tensor, _, cache = self.cross_attention(tensor, memory, mask=memory_mask, cache=cache)
+        return self.dropout(tensor), cache
+
+    def forward(self, tenso
