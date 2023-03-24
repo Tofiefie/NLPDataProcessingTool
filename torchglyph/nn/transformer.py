@@ -115,4 +115,5 @@ class TransformerDecoderLayer(nn.Module):
         tensor, _, cache = self.cross_attention(tensor, memory, mask=memory_mask, cache=cache)
         return self.dropout(tensor), cache
 
-    def forward(self, tenso
+    def forward(self, tensor: Tensor, mask: Optional[Tensor], memory: Tensor, memory_mask: Tensor,
+                
