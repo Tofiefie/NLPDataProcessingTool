@@ -116,4 +116,5 @@ class TransformerDecoderLayer(nn.Module):
         return self.dropout(tensor), cache
 
     def forward(self, tensor: Tensor, mask: Optional[Tensor], memory: Tensor, memory_mask: Tensor,
-                
+                att: Cache = None, crs: Cache = None) -> Tuple[Tensor, Cache, Cache]:
+        tensor, att = self.norm1(tensor, sub
