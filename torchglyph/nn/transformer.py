@@ -118,4 +118,6 @@ class TransformerDecoderLayer(nn.Module):
     def forward(self, tensor: Tensor, mask: Optional[Tensor], memory: Tensor, memory_mask: Tensor,
                 att: Cache = None, crs: Cache = None) -> Tuple[Tensor, Cache, Cache]:
         tensor, att = self.norm1(tensor, sub_layer=self.att, mask=mask, cache=att)
-        tensor, crs = self.norm2(tensor, sub_layer=self.crs, memory=me
+        tensor, crs = self.norm2(tensor, sub_layer=self.crs, memory=memory, memory_mask=memory_mask, cache=crs)
+        tensor = self.norm3(tensor, sub_layer=self.ffn)
+    
