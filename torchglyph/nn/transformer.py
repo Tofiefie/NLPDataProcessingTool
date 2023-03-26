@@ -120,4 +120,7 @@ class TransformerDecoderLayer(nn.Module):
         tensor, att = self.norm1(tensor, sub_layer=self.att, mask=mask, cache=att)
         tensor, crs = self.norm2(tensor, sub_layer=self.crs, memory=memory, memory_mask=memory_mask, cache=crs)
         tensor = self.norm3(tensor, sub_layer=self.ffn)
-    
+        return tensor, att, crs
+
+    def gather(self, cache: Cache, index: Tensor, dim: int) -> Cache:
+   
