@@ -130,4 +130,6 @@ class TransformerDecoderLayer(nn.Module):
 
 class TransformerDecoder(nn.ModuleList):
     def __init__(self, layer: Type[TransformerDecoderLayer] = TransformerDecoderLayer,
-        
+                 num_layers: int = 6, *, in_size: int) -> None:
+        modules = []
+        f
