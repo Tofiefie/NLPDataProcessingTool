@@ -124,4 +124,9 @@ class TransformerDecoderLayer(nn.Module):
 
     def gather(self, cache: Cache, index: Tensor, dim: int) -> Cache:
         k = gather(tensor=cache[0], index=index, dim=dim)
-        v = gather(tensor=cache[1]
+        v = gather(tensor=cache[1], index=index, dim=dim)
+        return k, v
+
+
+class TransformerDecoder(nn.ModuleList):
+    def _
