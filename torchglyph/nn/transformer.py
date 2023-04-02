@@ -134,4 +134,7 @@ class TransformerDecoder(nn.ModuleList):
         modules = []
         for _ in range(num_layers):
             modules.append(layer(in_size=in_size))
-         
+            in_size = modules[-1].encoding_dim
+
+        super(TransformerDecoder, self).__init__(modules)
+        s
