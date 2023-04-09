@@ -140,4 +140,8 @@ class TransformerDecoder(nn.ModuleList):
         self.encoding_dim = modules[-1].encoding_dim
 
     def forward(self, tensor: Tensor, mask: Optional[Tensor], memory: Tensor, memory_mask: Tensor,
-                att_cache: List[Cache] =
+                att_cache: List[Cache] = None, crs_cache: List[Cache] = None):
+        new_att_cache = []
+        new_crs_cache = []
+
+        i
