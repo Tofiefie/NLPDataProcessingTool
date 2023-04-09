@@ -144,4 +144,6 @@ class TransformerDecoder(nn.ModuleList):
         new_att_cache = []
         new_crs_cache = []
 
-        i
+        if att_cache is None:
+            att_cache = itertools.repeat(None)
+        if crs_cache is Non
