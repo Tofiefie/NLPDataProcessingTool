@@ -149,4 +149,6 @@ class TransformerDecoder(nn.ModuleList):
         if crs_cache is None:
             crs_cache = itertools.repeat(None)
 
-        for layer, att, crs in zip(self, att_cach
+        for layer, att, crs in zip(self, att_cache, crs_cache):
+            tensor, att, crs = layer(
+                tensor=tens
