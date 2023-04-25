@@ -154,4 +154,6 @@ class TransformerDecoder(nn.ModuleList):
                 tensor=tensor, mask=mask,
                 memory=memory, memory_mask=memory_mask,
                 att=att, crs=crs,
- 
+            )
+            new_att_cache.append(att)
+            new_crs_cache.append(
