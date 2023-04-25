@@ -9,4 +9,8 @@ from torch import optim
 
 logger = getLogger(__name__)
 
-ignores_d
+ignores_default = (
+    nn.LayerNorm, nn.GroupNorm, nn.LocalResponseNorm,
+
+    nn.SyncBatchNorm,
+  
