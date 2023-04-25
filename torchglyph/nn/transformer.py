@@ -151,4 +151,7 @@ class TransformerDecoder(nn.ModuleList):
 
         for layer, att, crs in zip(self, att_cache, crs_cache):
             tensor, att, crs = layer(
-                tensor=tens
+                tensor=tensor, mask=mask,
+                memory=memory, memory_mask=memory_mask,
+                att=att, crs=crs,
+ 
