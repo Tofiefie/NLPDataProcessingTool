@@ -15,3 +15,9 @@ def gather(tensor: Tensor, index: Tensor, dim: int) -> Tensor:
     tensor = tensor.broadcast_to(tensor_size)
     return tensor.gather(dim=dim, index=index.broadcast_to(index_size))
 
+
+def mask_fill(tensor: Tensor, *indices: int, value: Number = -float('inf')) -> Tensor:
+    for index in indices:
+        tensor[..., index] = value
+
+    return tensor
