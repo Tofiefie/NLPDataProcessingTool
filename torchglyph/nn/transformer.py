@@ -160,4 +160,6 @@ class TransformerDecoder(nn.ModuleList):
 
         return tensor, new_att_cache, new_crs_cache
 
-    def gather(self, caches: Cache, 
+    def gather(self, caches: Cache, index: Tensor, dim: int) -> List[Cache]:
+        return [
+            layer.gather(cache=ca
