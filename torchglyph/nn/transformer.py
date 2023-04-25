@@ -156,4 +156,8 @@ class TransformerDecoder(nn.ModuleList):
                 att=att, crs=crs,
             )
             new_att_cache.append(att)
-            new_crs_cache.append(
+            new_crs_cache.append(crs)
+
+        return tensor, new_att_cache, new_crs_cache
+
+    def gather(self, caches: Cache, 
