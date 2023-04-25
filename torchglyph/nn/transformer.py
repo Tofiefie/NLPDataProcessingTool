@@ -162,4 +162,6 @@ class TransformerDecoder(nn.ModuleList):
 
     def gather(self, caches: Cache, index: Tensor, dim: int) -> List[Cache]:
         return [
-            layer.gather(cache=ca
+            layer.gather(cache=cache, index=index, dim=dim)
+            for cache, layer in zip(caches, self)
+        ]
