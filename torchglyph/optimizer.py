@@ -13,4 +13,5 @@ ignores_default = (
     nn.LayerNorm, nn.GroupNorm, nn.LocalResponseNorm,
 
     nn.SyncBatchNorm,
-  
+    nn.BatchNorm1d, nn.BatchNorm2d, nn.BatchNorm3d,
+    nn.LazyBatchNorm1d, nn.LazyBatchNorm2d, nn.L
