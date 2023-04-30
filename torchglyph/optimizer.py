@@ -17,4 +17,8 @@ ignores_default = (
     nn.LazyBatchNorm1d, nn.LazyBatchNorm2d, nn.LazyBatchNorm3d,
 
     nn.InstanceNorm2d, nn.InstanceNorm3d, nn.InstanceNorm3d,
-    nn.LazyInstanceNorm2d, 
+    nn.LazyInstanceNorm2d, nn.LazyInstanceNorm3d, nn.LazyInstanceNorm3d,
+)
+
+
+def divide_groups(module: nn.Module, ignores: Tuple[nn.Mo
