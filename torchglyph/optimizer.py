@@ -26,3 +26,8 @@ def divide_groups(module: nn.Module, ignores: Tuple[nn.Module, ...] = None):
         ignores = ignores_default
 
     memory = set()
+    with_decay = set()
+    without_decay = set()
+
+    def recur(mod: nn.Module):
+        if mod i
