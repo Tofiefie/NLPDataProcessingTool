@@ -14,4 +14,7 @@ ignores_default = (
 
     nn.SyncBatchNorm,
     nn.BatchNorm1d, nn.BatchNorm2d, nn.BatchNorm3d,
-    nn.LazyBatchNorm1d, nn.LazyBatchNorm2d, nn.L
+    nn.LazyBatchNorm1d, nn.LazyBatchNorm2d, nn.LazyBatchNorm3d,
+
+    nn.InstanceNorm2d, nn.InstanceNorm3d, nn.InstanceNorm3d,
+    nn.LazyInstanceNorm2d, 
