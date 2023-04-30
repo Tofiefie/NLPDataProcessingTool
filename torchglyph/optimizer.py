@@ -21,4 +21,8 @@ ignores_default = (
 )
 
 
-def divide_groups(module: nn.Module, ignores: Tuple[nn.Mo
+def divide_groups(module: nn.Module, ignores: Tuple[nn.Module, ...] = None):
+    if ignores is None:
+        ignores = ignores_default
+
+    memory = set()
