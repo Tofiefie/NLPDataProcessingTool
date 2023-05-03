@@ -30,4 +30,9 @@ def divide_groups(module: nn.Module, ignores: Tuple[nn.Module, ...] = None):
     without_decay = set()
 
     def recur(mod: nn.Module):
-        if mod i
+        if mod in memory:
+            return
+
+        memory.add(mod)
+
+        for name, param in mod.named_parameters(
