@@ -35,4 +35,6 @@ def divide_groups(module: nn.Module, ignores: Tuple[nn.Module, ...] = None):
 
         memory.add(mod)
 
-        for name, param in mod.named_parameters(
+        for name, param in mod.named_parameters(recurse=False):
+            if param.requires_grad:
+                if isinstance(mod,
