@@ -40,4 +40,8 @@ def divide_groups(module: nn.Module, ignores: Tuple[nn.Module, ...] = None):
                 if isinstance(mod, ignores) or 'bias' in name:
                     without_decay.add(param)
                 else:
-        
+                    with_decay.add(param)
+
+        for m in mod._modules.values():
+            recur(mod=m)
+
