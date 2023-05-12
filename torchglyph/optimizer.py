@@ -45,3 +45,5 @@ def divide_groups(module: nn.Module, ignores: Tuple[nn.Module, ...] = None):
         for m in mod._modules.values():
             recur(mod=m)
 
+    recur(mod=module)
+    validate_groups(module, with_decay=with_decay, without_decay=without_
