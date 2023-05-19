@@ -58,4 +58,7 @@ def validate_groups(module: nn.Module, with_decay: Set[nn.Parameter], without_de
     intersection = with_decay & without_decay
 
     if len(intersection) > 0:
-        for param in i
+        for param in intersection:
+            logger.warning(f'{mapping[param]} is in both groups')
+
+    if len(union
