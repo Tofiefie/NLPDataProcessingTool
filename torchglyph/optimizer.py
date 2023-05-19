@@ -52,4 +52,7 @@ def divide_groups(module: nn.Module, ignores: Tuple[nn.Module, ...] = None):
 
 
 def validate_groups(module: nn.Module, with_decay: Set[nn.Parameter], without_decay: Set[nn.Parameter]) -> None:
-    mapping = {param: name fo
+    mapping = {param: name for name, param in module.named_parameters() if param.requires_grad}
+
+    union = with_decay | without_decay
+    in
