@@ -69,4 +69,5 @@ def validate_groups(module: nn.Module, with_decay: Set[nn.Parameter], without_de
 
 class SGD(optim.SGD):
     def __init__(self, lr: float = 1e-3, momentum: float = 0.9, dampening: float = 0.0,
-                 weig
+                 weight_decay: float = 1e-4, nesterov: bool = False, *, params, **kwargs) -> None:
+        super(SGD, self).__in
