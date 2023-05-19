@@ -55,4 +55,7 @@ def validate_groups(module: nn.Module, with_decay: Set[nn.Parameter], without_de
     mapping = {param: name for name, param in module.named_parameters() if param.requires_grad}
 
     union = with_decay | without_decay
-    in
+    intersection = with_decay & without_decay
+
+    if len(intersection) > 0:
+        for param in i
