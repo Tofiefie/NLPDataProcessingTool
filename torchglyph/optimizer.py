@@ -73,4 +73,9 @@ class SGD(optim.SGD):
         super(SGD, self).__init__(
             params=params, lr=lr,
             momentum=momentum, dampening=dampening,
-      
+            weight_decay=weight_decay, nesterov=nesterov,
+        )
+
+
+class Adam(optim.AdamW):
+    def __init
