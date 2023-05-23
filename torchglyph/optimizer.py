@@ -79,4 +79,6 @@ class SGD(optim.SGD):
 
 class Adam(optim.AdamW):
     def __init__(self, lr: float = 3e-4, beta1: float = 0.9, beta2: float = 0.98,
-                 weight_decay: float = 1
+                 weight_decay: float = 1e-4, amsgrad: bool = False, *, params, **kwargs) -> None:
+        super(Adam, self).__init__(
+            par
