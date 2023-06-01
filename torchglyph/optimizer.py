@@ -83,4 +83,10 @@ class Adam(optim.AdamW):
         super(Adam, self).__init__(
             params=params, lr=lr, betas=(beta1, beta2),
             weight_decay=weight_decay, amsgrad=amsgrad,
-     
+        )
+
+
+Optimizers = Union[
+    Type[SGD],
+    Type[Adam],
+]
