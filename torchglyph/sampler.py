@@ -50,3 +50,71 @@ class SortishSampler(utils.Sampler[int]):
         randperm = torch.randperm(len(self), dtype=torch.long, generator=torch.default_generator)
 
         if len(self.last_indices) > 0:
+            last_indices = torch.tensor(self.last_indices, dtype=torch.long)
+            self.last_indices = []
+
+            randperm = torch.cat([last_indices, randperm], dim=0)
+
+        for index in torch.split(randperm, self.section_size, dim=0):
+            args = torch.argsort(sizes[index], dim=0, descending=self.descending)
+            self.descending ^= True
+
+            yield from index[args].detach().cpu().tolist()
+
+
+class SortishBatchSampler(utils.BatchSampler):
+    def __init__(self, dataset: Dataset, sampler: SortishSampler, batch_size: int, drop_last: bool = False) -> None:
+        super(SortishBatchSampler, self).__init__(sampler=sampler, batch_size=batch_size, drop_last=drop_last)
+
+        self.sizes = dataset['size']
+
+    def __iter__(self) -> Iterator[List[int]]:
+        batch, current_size = [], 0
+
+        while True:
+            for index in self.sampler:
+                if self.sizes[index] + current_size > self.batch_size:
+                    if current_size > 0:
+                        yield batch
+                        batch, current_size = [], 0
+                    else:
+                        warnings.warn(
+                            f'example {index} :: {self.sizes[index]} is dropped, '
+                            f'consider increasing batch size ({current_size})?',
+                        )
+                        continue
+
+                batch.append(index)
+                current_size += self.sizes[index]
+
+            if not self.drop_last:
+                self.sampler.extend(batch)
+            batch, current_size = [], 0
+
+
+class SortishDevSampler(utils.BatchSampler):
+    def __init__(self, dataset: Dataset, sampler: SortishSampler, batch_size: int, drop_last: bool = False) -> None:
+        super(SortishDevSampler, self).__init__(sampler=sampler, batch_size=batch_size, drop_last=drop_last)
+
+        self.sizes = dataset['size']
+
+    def __iter__(self) -> Iterator[List[int]]:
+        batch, current_size = [], 0
+
+        for index in self.sampler:
+            if self.sizes[index] + current_size > self.batch_size:
+                if current_size > 0:
+                    yield batch
+                    batch, current_size = [], 0
+                else:
+                    warnings.warn(
+                        f'example {index} :: {self.sizes[index]} is dropped, '
+                        f'consider increasing batch size ({current_size})?',
+                    )
+                    continue
+
+            batch.append(index)
+            current_size += self.sizes[index]
+
+        if not self.drop_last and len(batch) > 0:
+            yield batch
