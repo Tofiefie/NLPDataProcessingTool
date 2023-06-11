@@ -8,4 +8,5 @@ from torch import Tensor
 logger = getLogger(__name__)
 
 
-def align_tokenizer(tokenizer: Tokenizer, pr
+def align_tokenizer(tokenizer: Tokenizer, pretrained_tokenizer: Tokenizer, *transforms) -> Tuple[Tensor, Tensor]:
+    count, xs, ys = 0, [], []
