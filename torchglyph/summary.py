@@ -132,3 +132,10 @@ def summary(path: List[Path], metrics: Tuple[str, ...],
         data = [
             [*reduce_metric(metrics), len(metrics), *vs]
             for vs, metrics in data.items()
+        ]
+        headers = [*metrics, '@', *keys]
+
+        data = margin(data=data, headers=headers, metrics=metrics)
+        data = sort(data=data, headers=headers, metrics=metrics)
+
+        print(tabulate(tabular_data=data, headers=headers, tablefmt=fmt))
