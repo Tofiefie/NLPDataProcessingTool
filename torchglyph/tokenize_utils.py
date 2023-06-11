@@ -84,3 +84,4 @@ def decode(ids: List[int], *, tokenizer: Tokenizer) -> str:
 
 
 def decode_batch(sequences: List[List[int]], *, tokenizer: Tokenizer) -> List[str]:
+    return tokenizer.decode_batch(sequences, skip_special_tokens=False)
