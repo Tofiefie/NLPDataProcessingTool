@@ -14,4 +14,6 @@ def align_tokenizer(tokenizer: Tokenizer, pretrained_tokenizer: Tokenizer, *tran
     vocab_size = tokenizer.get_vocab_size(with_added_tokens=True)
     pretrained_vocab = pretrained_tokenizer.get_vocab(with_added_tokens=True)
 
-    for token, index in tokenizer.get_vocab(w
+    for token, index in tokenizer.get_vocab(with_added_tokens=True).items():
+        for transform in (str, *transforms):
+            pretrained_
