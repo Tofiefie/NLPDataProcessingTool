@@ -16,4 +16,5 @@ def align_tokenizer(tokenizer: Tokenizer, pretrained_tokenizer: Tokenizer, *tran
 
     for token, index in tokenizer.get_vocab(with_added_tokens=True).items():
         for transform in (str, *transforms):
-            pretrained_
+            pretrained_token = transform(token)
+            pretrained_index = pretrained_vocab.get(pretrain
