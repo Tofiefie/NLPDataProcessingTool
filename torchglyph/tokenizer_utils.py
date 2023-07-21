@@ -21,4 +21,6 @@ def align_tokenizer(tokenizer: Tokenizer, pretrained_tokenizer: Tokenizer, *tran
 
             if pretrained_token is not None:
                 xs.append(index)
-    
+                ys.append(pretrained_index)
+                count += 1
+             
