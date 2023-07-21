@@ -23,4 +23,6 @@ def align_tokenizer(tokenizer: Tokenizer, pretrained_tokenizer: Tokenizer, *tran
                 xs.append(index)
                 ys.append(pretrained_index)
                 count += 1
-             
+                break
+
+    logger.info(f'Tokenizer({vocab_size}) => {count * 100 / vocab_size:.0f}%'
