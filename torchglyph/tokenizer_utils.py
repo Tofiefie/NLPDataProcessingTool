@@ -28,4 +28,5 @@ def align_tokenizer(tokenizer: Tokenizer, pretrained_tokenizer: Tokenizer, *tran
     logger.info(f'Tokenizer({vocab_size}) => {count * 100 / vocab_size:.0f}%')
 
     xs = torch.tensor(xs, dtype=torch.long)
-    ys = torch.tensor(ys, dtype=tor
+    ys = torch.tensor(ys, dtype=torch.long)
+    return xs, ys
