@@ -6,4 +6,5 @@ from typing import Type
 
 from tokenizers import Tokenizer
 from tokenizers import models
-f
+from tokenizers import pre_tokenizers
+from tokenizers.trainers import WordLevelTra
