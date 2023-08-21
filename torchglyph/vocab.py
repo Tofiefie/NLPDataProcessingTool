@@ -19,4 +19,9 @@ __all__ = [
 ]
 
 
-class Vocab(object)
+class Vocab(object):
+    Token: Type
+    Index: Type
+    registry = {}
+
+    def __init__(self, vocab_size: int = 10
