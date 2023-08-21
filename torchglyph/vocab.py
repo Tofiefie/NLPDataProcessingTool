@@ -24,4 +24,6 @@ class Vocab(object):
     Index: Type
     registry = {}
 
-    def __init__(self, vocab_size: int = 10
+    def __init__(self, vocab_size: int = 10_0000, min_freq: int = 0, *,
+                 unk_token: str = None, pad_token: str = None,
+                 bos_to
