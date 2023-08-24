@@ -44,4 +44,5 @@ class Vocab(object):
         self.special_tokens = special_tokens
 
     def __init_subclass__(cls, **kwargs):
-        if hasattr(cls, 'Token') 
+        if hasattr(cls, 'Token') and hasattr(cls, 'Index'):
+            if (cls.__base__, cls.Token, cls.Index) in cls.regist
