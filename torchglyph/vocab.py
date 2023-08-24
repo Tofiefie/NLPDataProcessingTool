@@ -41,4 +41,7 @@ class Vocab(object):
 
         special_tokens = [unk_token, pad_token, bos_token, eos_token, mask_token, *special_tokens]
         special_tokens = [token for token in special_tokens if token is not None]
-        self.special
+        self.special_tokens = special_tokens
+
+    def __init_subclass__(cls, **kwargs):
+        if hasattr(cls, 'Token') 
