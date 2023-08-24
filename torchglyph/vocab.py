@@ -45,4 +45,6 @@ class Vocab(object):
 
     def __init_subclass__(cls, **kwargs):
         if hasattr(cls, 'Token') and hasattr(cls, 'Index'):
-            if (cls.__base__, cls.Token, cls.Index) in cls.regist
+            if (cls.__base__, cls.Token, cls.Index) in cls.registry:
+                logger.warning(f'({cls.__base__}, {cls.Token}, {cls.Index}) is overwritten')
+   
