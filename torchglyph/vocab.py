@@ -26,4 +26,5 @@ class Vocab(object):
 
     def __init__(self, vocab_size: int = 10_0000, min_freq: int = 0, *,
                  unk_token: str = None, pad_token: str = None,
-                 bos_to
+                 bos_token: str = None, eos_token: str = None,
+                 mask_token: str = None, special_to
