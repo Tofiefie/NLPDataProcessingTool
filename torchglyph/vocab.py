@@ -39,4 +39,6 @@ class Vocab(object):
         self.eos_token = eos_token
         self.mask_token = mask_token
 
-        special_tokens = [unk_token, pad_token, bos_token, eos_token, mask_token, *specia
+        special_tokens = [unk_token, pad_token, bos_token, eos_token, mask_token, *special_tokens]
+        special_tokens = [token for token in special_tokens if token is not None]
+        self.special
