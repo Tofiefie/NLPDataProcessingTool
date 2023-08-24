@@ -34,4 +34,7 @@ class Vocab(object):
         self.min_freq = min_freq
 
         self.unk_token = unk_token
-        self.pad_token = pa
+        self.pad_token = pad_token
+        self.bos_token = bos_token
+        self.eos_token = eos_token
+        self.mask_token = m
