@@ -30,4 +30,8 @@ class Vocab(object):
                  mask_token: str = None, special_tokens: Tuple[str, ...] = ()) -> None:
         super(Vocab, self).__init__()
 
-        self.vocab_size
+        self.vocab_size = vocab_size
+        self.min_freq = min_freq
+
+        self.unk_token = unk_token
+        self.pad_token = pa
