@@ -47,4 +47,6 @@ class Vocab(object):
         if hasattr(cls, 'Token') and hasattr(cls, 'Index'):
             if (cls.__base__, cls.Token, cls.Index) in cls.registry:
                 logger.warning(f'({cls.__base__}, {cls.Token}, {cls.Index}) is overwritten')
-   
+            cls.registry[cls.__base__, cls.Token, cls.Index] = cls
+
+    def __class_getitem__(cls, tp) -> 
