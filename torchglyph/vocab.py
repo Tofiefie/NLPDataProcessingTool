@@ -53,4 +53,6 @@ class Vocab(object):
         return cls.registry[cls, tp[0], tp[1]]
 
     def __len__(self) -> int:
-     
+        return self.tokenizer.get_vocab_size(with_added_tokens=True)
+
+    def __repr__(self) 
