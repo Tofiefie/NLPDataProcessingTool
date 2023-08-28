@@ -49,4 +49,8 @@ class Vocab(object):
                 logger.warning(f'({cls.__base__}, {cls.Token}, {cls.Index}) is overwritten')
             cls.registry[cls.__base__, cls.Token, cls.Index] = cls
 
-    def __class_getitem__(cls, tp) -> 
+    def __class_getitem__(cls, tp) -> 'Vocab':
+        return cls.registry[cls, tp[0], tp[1]]
+
+    def __len__(self) -> int:
+     
