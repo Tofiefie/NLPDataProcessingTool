@@ -68,4 +68,8 @@ class Vocab(object):
     def tokenizer(self) -> Tokenizer:
         raise NotImplementedError
 
-    @lazy_p
+    @lazy_property
+    def trainer(self):
+        raise NotImplementedError
+
+    def train_from_iterator(self, *iterators
