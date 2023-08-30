@@ -58,4 +58,10 @@ class Vocab(object):
     def __repr__(self) -> str:
         return f'{self.__class__.__name__}({self.extra_repr()})'
 
-    def extra_repr(self) -> 
+    def extra_repr(self) -> str:
+        return ', '.join([
+            f'{len(self)}',
+            *self.special_tokens,
+        ])
+
+ 
