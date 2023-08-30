@@ -64,4 +64,8 @@ class Vocab(object):
             *self.special_tokens,
         ])
 
- 
+    @lazy_property
+    def tokenizer(self) -> Tokenizer:
+        raise NotImplementedError
+
+    @lazy_p
