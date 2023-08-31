@@ -76,4 +76,6 @@ class Vocab(object):
         return self.tokenizer.train_from_iterator(itertools.chain(*iterators), self.trainer)
 
     def encode(self, sequence: 'Token', pair: 'Token' = None, add_special_tokens: bool = True) -> 'Index':
-        rai
+        raise NotImplementedError
+
+    def encode_batch(self, sequences: List['Token'], add_special_tokens: bool = Tr
