@@ -72,4 +72,7 @@ class Vocab(object):
     def trainer(self):
         raise NotImplementedError
 
-    def train_from_iterator(self, *iterators
+    def train_from_iterator(self, *iterators):
+        return self.tokenizer.train_from_iterator(itertools.chain(*iterators), self.trainer)
+
+    def 
