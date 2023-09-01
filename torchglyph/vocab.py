@@ -78,4 +78,7 @@ class Vocab(object):
     def encode(self, sequence: 'Token', pair: 'Token' = None, add_special_tokens: bool = True) -> 'Index':
         raise NotImplementedError
 
-    def encode_batch(self, sequences: List['Token'], add_special_tokens: bool = Tr
+    def encode_batch(self, sequences: List['Token'], add_special_tokens: bool = True) -> List['Index']:
+        raise NotImplementedError
+
+    def inv(self, index: 'Index'):
