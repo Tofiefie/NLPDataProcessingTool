@@ -82,3 +82,7 @@ class Vocab(object):
         raise NotImplementedError
 
     def inv(self, index: 'Index'):
+        raise NotImplementedError
+
+    def inv_batch(self, indices: List['Index']):
+        rai
