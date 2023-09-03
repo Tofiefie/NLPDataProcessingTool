@@ -85,4 +85,7 @@ class Vocab(object):
         raise NotImplementedError
 
     def inv_batch(self, indices: List['Index']):
+        raise NotImplementedError
+
+    def decode(self, index: 'Index', skip_special_tokens: bool = False) -> str:
         rai
