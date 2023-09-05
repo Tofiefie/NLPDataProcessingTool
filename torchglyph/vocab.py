@@ -95,4 +95,7 @@ class Vocab(object):
 
 
 class WordVocab(Vocab):
-    @lazy_prop
+    @lazy_property
+    def trainer(self) -> WordLevelTrainer:
+        return WordLevelTrainer(
+            show_progress=F
