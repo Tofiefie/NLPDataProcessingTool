@@ -101,4 +101,10 @@ class WordVocab(Vocab):
             show_progress=False,
             vocab_size=self.vocab_size,
             min_frequency=self.min_freq,
-        
+            special_tokens=self.special_tokens,
+        )
+
+
+class WordVocab00(WordVocab):
+    Token = str
+  
