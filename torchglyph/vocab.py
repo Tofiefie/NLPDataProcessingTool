@@ -107,4 +107,8 @@ class WordVocab(Vocab):
 
 class WordVocab00(WordVocab):
     Token = str
-  
+    Index = int
+
+    @lazy_property
+    def tokenizer(self) -> Tokenizer:
+        obj = Tokeniz
