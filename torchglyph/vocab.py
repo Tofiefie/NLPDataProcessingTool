@@ -98,4 +98,7 @@ class WordVocab(Vocab):
     @lazy_property
     def trainer(self) -> WordLevelTrainer:
         return WordLevelTrainer(
-            show_progress=F
+            show_progress=False,
+            vocab_size=self.vocab_size,
+            min_frequency=self.min_freq,
+        
