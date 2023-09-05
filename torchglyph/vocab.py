@@ -90,4 +90,9 @@ class Vocab(object):
     def decode(self, index: 'Index', skip_special_tokens: bool = False) -> str:
         raise NotImplementedError
 
-    def decode_batch(self, indices: List['Index'], skip_sp
+    def decode_batch(self, indices: List['Index'], skip_special_tokens: bool = False) -> List[str]:
+        raise NotImplementedError
+
+
+class WordVocab(Vocab):
+    @lazy_prop
