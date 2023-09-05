@@ -117,4 +117,7 @@ class WordVocab00(WordVocab):
     def encode(self, sequence: Token, pair: Token = None, add_special_tokens: bool = True) -> Index:
         encoding = self.tokenizer.encode(
             sequence, pair,
-            is_preto
+            is_pretokenized=False,
+            add_special_tokens=add_special_tokens,
+        )
+        return encoding.ids[0]
