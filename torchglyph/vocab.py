@@ -121,3 +121,6 @@ class WordVocab00(WordVocab):
             add_special_tokens=add_special_tokens,
         )
         return encoding.ids[0]
+
+    def encode_batch(self, sequences: List[Token], add_special_tokens: bool = True) -> List[Index]:
+        encodings =
