@@ -128,4 +128,7 @@ class WordVocab00(WordVocab):
             is_pretokenized=False,
             add_special_tokens=add_special_tokens,
         )
-        return [encoding.ids[0]
+        return [encoding.ids[0] for encoding in encodings]
+
+    def inv(self, index: Index) -> str:
+        return sel
