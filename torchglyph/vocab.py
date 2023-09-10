@@ -133,4 +133,7 @@ class WordVocab00(WordVocab):
     def inv(self, index: Index) -> str:
         return self.tokenizer.id_to_token(index)
 
-    def inv_batch(self, index: List[Index]) -> L
+    def inv_batch(self, index: List[Index]) -> List[str]:
+        return [self.tokenizer.id_to_token(idx) for idx in index]
+
+    def decode(self, i
