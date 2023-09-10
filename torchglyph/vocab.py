@@ -131,4 +131,6 @@ class WordVocab00(WordVocab):
         return [encoding.ids[0] for encoding in encodings]
 
     def inv(self, index: Index) -> str:
-        return sel
+        return self.tokenizer.id_to_token(index)
+
+    def inv_batch(self, index: List[Index]) -> L
