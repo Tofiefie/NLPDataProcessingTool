@@ -151,4 +151,6 @@ class WordVocab01(WordVocab):
     Index = List[int]
 
     @lazy_property
-    def tokenizer(self) -> Tokenizer
+    def tokenizer(self) -> Tokenizer:
+        obj = Tokenizer(model=models.WordLevel(unk_token=self.unk_token))
+        obj.pre_tokeniz
