@@ -153,4 +153,6 @@ class WordVocab01(WordVocab):
     @lazy_property
     def tokenizer(self) -> Tokenizer:
         obj = Tokenizer(model=models.WordLevel(unk_token=self.unk_token))
-        obj.pre_tokeniz
+        obj.pre_tokenizer = pre_tokenizers.Sequence([
+            pre_tokenizers.UnicodeScripts(),
+            pre_tokenizers.B
