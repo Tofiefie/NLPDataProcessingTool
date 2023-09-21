@@ -155,4 +155,8 @@ class WordVocab01(WordVocab):
         obj = Tokenizer(model=models.WordLevel(unk_token=self.unk_token))
         obj.pre_tokenizer = pre_tokenizers.Sequence([
             pre_tokenizers.UnicodeScripts(),
-            pre_tokenizers.B
+            pre_tokenizers.BertPreTokenizer(),
+        ])
+        return obj
+
+    def encode(self, sequen
