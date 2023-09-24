@@ -160,4 +160,7 @@ class WordVocab01(WordVocab):
         return obj
 
     def encode(self, sequence: Token, pair: Token = None, add_special_tokens: bool = True) -> Index:
-        encoding
+        encoding = self.tokenizer.encode(
+            sequence, pair,
+            is_pretokenized=False,
+   
