@@ -163,4 +163,8 @@ class WordVocab01(WordVocab):
         encoding = self.tokenizer.encode(
             sequence, pair,
             is_pretokenized=False,
-   
+            add_special_tokens=add_special_tokens,
+        )
+        return encoding.ids
+
+    def encode_
