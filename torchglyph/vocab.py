@@ -171,4 +171,6 @@ class WordVocab01(WordVocab):
         encodings = self.tokenizer.encode_batch(
             sequences,
             is_pretokenized=False,
-            add_specia
+            add_special_tokens=add_special_tokens,
+        )
+        return [encoding.ids for encoding in encodin
