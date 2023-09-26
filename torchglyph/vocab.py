@@ -167,4 +167,5 @@ class WordVocab01(WordVocab):
         )
         return encoding.ids
 
-    def encode_
+    def encode_batch(self, sequences: List[Token], add_special_tokens: bool = True) -> List[Index]:
+        encodings
