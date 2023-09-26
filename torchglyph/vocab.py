@@ -173,4 +173,7 @@ class WordVocab01(WordVocab):
             is_pretokenized=False,
             add_special_tokens=add_special_tokens,
         )
-        return [encoding.ids for encoding in encodin
+        return [encoding.ids for encoding in encodings]
+
+    def inv(self, index: Index) -> List[str]:
+        return [self.tokenizer.id_to_token(id
