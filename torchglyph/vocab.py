@@ -194,4 +194,7 @@ class WordVocab11(WordVocab):
 
     @lazy_property
     def tokenizer(self) -> Tokenizer:
-        obj = Tokenizer(model=models.WordLevel(unk_t
+        obj = Tokenizer(model=models.WordLevel(unk_token=self.unk_token))
+        return obj
+
+    def encode(self, sequence: Token, pair: Token = None, 
