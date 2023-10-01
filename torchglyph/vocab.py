@@ -197,4 +197,6 @@ class WordVocab11(WordVocab):
         obj = Tokenizer(model=models.WordLevel(unk_token=self.unk_token))
         return obj
 
-    def encode(self, sequence: Token, pair: Token = None, 
+    def encode(self, sequence: Token, pair: Token = None, add_special_tokens: bool = True) -> Index:
+        encoding = self.tokenizer.encode(
+            seq
