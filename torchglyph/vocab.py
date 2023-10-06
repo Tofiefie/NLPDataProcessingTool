@@ -201,4 +201,8 @@ class WordVocab11(WordVocab):
         encoding = self.tokenizer.encode(
             sequence, pair,
             is_pretokenized=True,
-            add_special_tokens=add_special_tok
+            add_special_tokens=add_special_tokens,
+        )
+        return encoding.ids
+
+    def encode_batch(self, sequences: List[T
