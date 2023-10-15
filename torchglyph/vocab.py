@@ -215,3 +215,6 @@ class WordVocab11(WordVocab):
 
     def inv(self, index: Index) -> List[str]:
         return [self.tokenizer.id_to_token(idx) for idx in index]
+
+    def inv_batch(self, indices: List[Index]) -> List[List[str]]:
+        return [[self.tokenizer.id_to_token(id
