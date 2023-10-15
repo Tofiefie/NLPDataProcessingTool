@@ -223,4 +223,9 @@ class WordVocab11(WordVocab):
         return self.tokenizer.decode(index, skip_special_tokens=skip_special_tokens)
 
     def decode_batch(self, indices: List[Index], skip_special_tokens: bool = False) -> List[str]:
-        return self.tokenizer.decode_batch(indices, skip_special_tokens=skip_special_tok
+        return self.tokenizer.decode_batch(indices, skip_special_tokens=skip_special_tokens)
+
+
+class WordPieceVocab(Vocab):
+    @lazy_property
+    def trainer(self) -> WordPieceTrainer:
