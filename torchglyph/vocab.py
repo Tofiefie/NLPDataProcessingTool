@@ -231,4 +231,6 @@ class WordPieceVocab(Vocab):
     def trainer(self) -> WordPieceTrainer:
         return WordPieceTrainer(
             show_progress=False,
-            vocab_size=self.v
+            vocab_size=self.vocab_size,
+            min_frequency=self.min_freq,
+            special_tokens=self.s
