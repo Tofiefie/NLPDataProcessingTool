@@ -219,4 +219,7 @@ class WordVocab11(WordVocab):
     def inv_batch(self, indices: List[Index]) -> List[List[str]]:
         return [[self.tokenizer.id_to_token(idx) for idx in index] for index in indices]
 
-    def decode(self, index: Index, skip_special_tokens: bool = 
+    def decode(self, index: Index, skip_special_tokens: bool = False) -> str:
+        return self.tokenizer.decode(index, skip_special_tokens=skip_special_tokens)
+
+    
