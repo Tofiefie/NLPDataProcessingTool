@@ -213,4 +213,5 @@ class WordVocab11(WordVocab):
         )
         return [encoding.ids for encoding in encodings]
 
-    def
+    def inv(self, index: Index) -> List[str]:
+        return [self.tokenizer.id_to_token(idx) for idx in index]
