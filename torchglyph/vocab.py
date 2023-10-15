@@ -222,4 +222,5 @@ class WordVocab11(WordVocab):
     def decode(self, index: Index, skip_special_tokens: bool = False) -> str:
         return self.tokenizer.decode(index, skip_special_tokens=skip_special_tokens)
 
-    def decode_batch(self, indices: List[Index], skip_special_tokens: bool = False) -> List[str
+    def decode_batch(self, indices: List[Index], skip_special_tokens: bool = False) -> List[str]:
+        return self.tokenizer.decode_batch(indices, skip_special_tokens=skip_special_tok
