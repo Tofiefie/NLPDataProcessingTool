@@ -243,4 +243,7 @@ class WordPieceVocab01(WordPieceVocab):
 
     @lazy_property
     def trainer(self) -> WordPieceTrainer:
-        return WordPieceTrainer
+        return WordPieceTrainer(
+            show_progress=False,
+            vocab_size=self.vocab_size,
+            min_frequency=self.min
