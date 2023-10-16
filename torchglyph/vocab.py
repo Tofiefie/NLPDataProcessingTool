@@ -241,4 +241,6 @@ class WordPieceVocab01(WordPieceVocab):
     Token = str
     Index = List[int]
 
- 
+    @lazy_property
+    def trainer(self) -> WordPieceTrainer:
+        return WordPieceTrainer
