@@ -257,4 +257,6 @@ class WordPieceVocab01(WordPieceVocab):
         else:
             obj = Tokenizer(model=models.WordPiece(unk_token=self.unk_token))
 
- 
+        obj.pre_tokenizer = pre_tokenizers.Sequence([
+            pre_tokenizers.UnicodeScripts(),
+         
