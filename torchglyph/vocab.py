@@ -246,4 +246,9 @@ class WordPieceVocab01(WordPieceVocab):
         return WordPieceTrainer(
             show_progress=False,
             vocab_size=self.vocab_size,
-            min_frequency=self.min
+            min_frequency=self.min_freq,
+            special_tokens=self.special_tokens,
+        )
+
+    @lazy_property
+    def tokenizer(se
