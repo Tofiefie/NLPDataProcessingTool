@@ -251,4 +251,7 @@ class WordPieceVocab01(WordPieceVocab):
         )
 
     @lazy_property
-    def tokenizer(se
+    def tokenizer(self) -> Tokenizer:
+        if self.unk_token is None:
+            obj = Tokenizer(model=models.WordPiece())
+    
