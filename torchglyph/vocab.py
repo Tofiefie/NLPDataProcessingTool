@@ -233,4 +233,12 @@ class WordPieceVocab(Vocab):
             show_progress=False,
             vocab_size=self.vocab_size,
             min_frequency=self.min_freq,
-            special_tokens=self.s
+            special_tokens=self.special_tokens,
+        )
+
+
+class WordPieceVocab01(WordPieceVocab):
+    Token = str
+    Index = List[int]
+
+ 
