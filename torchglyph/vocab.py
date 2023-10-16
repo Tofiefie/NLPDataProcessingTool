@@ -254,4 +254,7 @@ class WordPieceVocab01(WordPieceVocab):
     def tokenizer(self) -> Tokenizer:
         if self.unk_token is None:
             obj = Tokenizer(model=models.WordPiece())
-    
+        else:
+            obj = Tokenizer(model=models.WordPiece(unk_token=self.unk_token))
+
+ 
