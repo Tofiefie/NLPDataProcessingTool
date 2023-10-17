@@ -263,4 +263,5 @@ class WordPieceVocab01(WordPieceVocab):
         ])
         return obj
 
-    def encode(self, sequence: Token,
+    def encode(self, sequence: Token, pair: Token = None, add_special_tokens: bool = True) -> Index:
+        encoding = self
