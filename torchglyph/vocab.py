@@ -259,4 +259,8 @@ class WordPieceVocab01(WordPieceVocab):
 
         obj.pre_tokenizer = pre_tokenizers.Sequence([
             pre_tokenizers.UnicodeScripts(),
-         
+            pre_tokenizers.BertPreTokenizer(),
+        ])
+        return obj
+
+    def encode(self, sequence: Token,
