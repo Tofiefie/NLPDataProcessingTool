@@ -264,4 +264,7 @@ class WordPieceVocab01(WordPieceVocab):
         return obj
 
     def encode(self, sequence: Token, pair: Token = None, add_special_tokens: bool = True) -> Index:
-        encoding = self
+        encoding = self.tokenizer.encode(
+            sequence, pair,
+            is_pretokenized=False,
+            add_spec
