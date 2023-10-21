@@ -271,4 +271,6 @@ class WordPieceVocab01(WordPieceVocab):
         )
         return encoding.ids
 
-    def encode_batch(self, sequences: List[Token]
+    def encode_batch(self, sequences: List[Token], add_special_tokens: bool = True) -> List[Index]:
+        encodings = self.tokenizer.encode_batch(
+            
