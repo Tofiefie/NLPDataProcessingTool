@@ -273,4 +273,7 @@ class WordPieceVocab01(WordPieceVocab):
 
     def encode_batch(self, sequences: List[Token], add_special_tokens: bool = True) -> List[Index]:
         encodings = self.tokenizer.encode_batch(
-            
+            sequences,
+            is_pretokenized=False,
+            add_special_tokens=add_special_tokens,
+        )
