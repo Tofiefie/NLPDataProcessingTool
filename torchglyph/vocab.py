@@ -277,3 +277,6 @@ class WordPieceVocab01(WordPieceVocab):
             is_pretokenized=False,
             add_special_tokens=add_special_tokens,
         )
+        return [encoding.ids for encoding in encodings]
+
+    def inv(self, index: 
