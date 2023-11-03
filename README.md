@@ -1,1 +1,1 @@
-<div align=\"center\">\n\n# NLPDataProcessingTool\n\n![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Tofiefie/NLPDataProcessingTool/unit-tests.yml?cacheSeconds=0)\n![PyPI - Versio
+<div align=\"center\">\n\n# NLPDataProcessingTool\n\n![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Tofiefie/NLPDataProcessingTool/unit-tests.yml?cacheSeconds=0)\n![PyPI - Version](https://img.shields.io/pypi/v/torchglyph?label=pypi%20version&cacheSeconds=0)\n![PyPI 
