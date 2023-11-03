@@ -288,4 +288,5 @@ class WordPieceVocab01(WordPieceVocab):
     def decode(self, index: Index, skip_special_tokens: bool = False) -> str:
         return self.tokenizer.decode(index, skip_special_tokens=skip_special_tokens)
 
-    def decode_batch(s
+    def decode_batch(self, indices: List[Index], skip_special_tokens: bool = False) -> List[str]:
+        return self.tokenizer.decode_ba
